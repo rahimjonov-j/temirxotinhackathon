@@ -93,7 +93,7 @@ export default function Editorial() {
         </div>
 
         {/* Rows */}
-        <div style={{ display: 'flex', flexDirection: 'column' }}>
+        <div className="ed-rows-wrap" style={{ display: 'flex', flexDirection: 'column' }}>
           {features.map((f, i) => (
             <EdRow
               key={f.num}
@@ -108,16 +108,28 @@ export default function Editorial() {
 
       <style>{`
         @media (max-width: 900px) {
-          .section-head-ed { grid-template-columns: 1fr !important; gap: 18px !important; margin-bottom: 56px !important; }
+          .section-head-ed { grid-template-columns: 1fr !important; gap: 18px !important; margin-bottom: 48px !important; }
         }
         @media (max-width: 980px) {
-          .ed-row-grid { grid-template-columns: 1fr !important; gap: 16px !important; padding-block: 40px !important; }
+          .ed-row-grid { grid-template-columns: 1fr !important; gap: 14px !important; padding-block: 36px !important; }
           .ed-glyph-wrap { justify-content: flex-start !important; height: 80px !important; }
         }
         @media (max-width: 640px) {
+          .ed-rows-wrap { display: grid !important; grid-template-columns: 1fr 1fr !important; gap: 0 !important; }
+          .ed-row-grid {
+            padding: 20px 16px !important;
+            gap: 8px !important;
+            border-top: 1px solid var(--border) !important;
+            border-bottom: none !important;
+            border-right: 1px solid var(--border) !important;
+          }
+          .ed-row-grid:nth-child(even) { border-right: none !important; }
+          .ed-row-grid:last-child { border-bottom: 1px solid var(--border) !important; }
+          .ed-row-grid:nth-last-child(2) { border-bottom: 1px solid var(--border) !important; }
           .ed-glyph-wrap { display: none !important; }
-          .ed-row-grid { gap: 12px !important; padding-block: 32px !important; }
-          .ed-num { font-size: clamp(3.5rem, 16vw, 6rem) !important; }
+          .ed-num { font-size: clamp(2.6rem, 11vw, 4rem) !important; margin-bottom: 6px !important; }
+          .ed-row-grid h3 { font-size: clamp(1rem, 4vw, 1.2rem) !important; margin-bottom: 6px !important; }
+          .ed-row-grid p { font-size: 12px !important; line-height: 1.5 !important; }
         }
       `}</style>
     </section>

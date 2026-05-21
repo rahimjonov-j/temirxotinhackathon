@@ -15,8 +15,8 @@ export const metadata: Metadata = {
   metadataBase: new URL(SITE_URL),
 
   title: {
-    default: "Temir Xotin — Mashinangiz tarixi, bir joyda",
-    template: "%s | Temir Xotin",
+    default: "Moshn — Mashinangiz tarixi, bir joyda",
+    template: "%s | Moshn",
   },
   description:
     "Har bir ta'mir, har bir moy almashtirish — telefoningizda saqlanadi. Mashinani sotsangiz, butun tarix yangi egaga o'tadi. O'zbekiston bo'ylab 380+ ishonchli usta.",
@@ -29,7 +29,7 @@ export const metadata: Metadata = {
     "texpasport skaner",
     "mashina ta'mir yozuvi",
     "servis kitobi",
-    "temir xotin",
+    "moshn",
     "usta topish",
     "avtoservis O'zbekiston",
     "car service history uzbekistan",
@@ -38,9 +38,9 @@ export const metadata: Metadata = {
     "avtomobil tarixi ilovasi",
   ],
 
-  authors: [{ name: "Temir Xotin", url: SITE_URL }],
-  creator: "Temir Xotin",
-  publisher: "Temir Xotin",
+  authors: [{ name: "Moshn", url: SITE_URL }],
+  creator: "Moshn",
+  publisher: "Moshn",
 
   robots: {
     index: true,
@@ -65,28 +65,29 @@ export const metadata: Metadata = {
     type: "website",
     locale: "uz_UZ",
     url: SITE_URL,
-    siteName: "Temir Xotin",
-    title: "Temir Xotin — Mashinangiz tarixi, bir joyda",
+    siteName: "Moshn",
+    title: "Moshn — Mashinangiz tarixi, bir joyda",
     description:
       "Har bir ta'mir, har bir almashtirish — telefoningizda saqlanadi. Mashinani sotsangiz, butun tarix yangi egaga o'tadi.",
   },
 
   twitter: {
     card: "summary_large_image",
-    title: "Temir Xotin — Mashinangiz tarixi, bir joyda",
+    title: "Moshn — Mashinangiz tarixi, bir joyda",
     description:
       "Har bir ta'mir, har bir almashtirish — telefoningizda saqlanadi. O'zbekiston bo'ylab 380+ ishonchli usta.",
   },
 
   icons: {
     icon: [
-      { url: "/temir-xotin-dark-square.svg", type: "image/svg+xml" },
-      { url: "/temir-xotin-dark-square.png", sizes: "192x192", type: "image/png" },
+      { url: "/icon-32.png",  sizes: "32x32",   type: "image/png" },
+      { url: "/icon-64.png",  sizes: "64x64",   type: "image/png" },
+      { url: "/icon-192.png", sizes: "192x192", type: "image/png" },
     ],
     apple: [
-      { url: "/temir-xotin-dark-square.png", sizes: "180x180", type: "image/png" },
+      { url: "/icon-180.png", sizes: "180x180", type: "image/png" },
     ],
-    shortcut: "/temir-xotin-dark-square.png",
+    shortcut: "/icon-192.png",
   },
 
   category: "technology",
@@ -98,11 +99,11 @@ const jsonLd = {
     {
       "@type": "Organization",
       "@id": `${SITE_URL}/#organization`,
-      name: "Temir Xotin",
+      name: "Moshn",
       url: SITE_URL,
       logo: {
         "@type": "ImageObject",
-        url: `${SITE_URL}/temir-xotin-light.svg`,
+        url: `${SITE_URL}/logo-transparent.webp`,
       },
       description:
         "O'zbekistonda avtomobil servis tarixi va ishonchli ustalar platformasi.",
@@ -111,7 +112,7 @@ const jsonLd = {
     {
       "@type": "MobileApplication",
       "@id": `${SITE_URL}/#app`,
-      name: "Temir Xotin",
+      name: "Moshn",
       operatingSystem: "ANDROID, IOS",
       applicationCategory: "UtilitiesApplication",
       description:
@@ -127,7 +128,7 @@ const jsonLd = {
       "@type": "WebSite",
       "@id": `${SITE_URL}/#website`,
       url: SITE_URL,
-      name: "Temir Xotin",
+      name: "Moshn",
       publisher: { "@id": `${SITE_URL}/#organization` },
       inLanguage: "uz-UZ",
     },

@@ -1,31 +1,78 @@
 'use client';
 
-import { useEffect, useRef } from 'react';
+import { useEffect, useRef, useState, useCallback } from 'react';
+
+const CARS = [
+  { src: '/cobalt.webp',      alt: 'Chevrolet Cobalt' },
+  { src: '/haval.webp',       alt: 'Haval' },
+  { src: '/damas.webp',       alt: 'Daewoo Damas' },
+  { src: '/bydchampion.webp', alt: 'BYD Champion' },
+  { src: '/kiasonet1.webp',   alt: 'Kia Sonet' },
+];
+
+/* Clone first slide at end for seamless infinite loop */
+const SLIDES = [...CARS, CARS[0]];
 
 export default function Hero() {
-  const carWrapRef = useRef<HTMLDivElement>(null);
-  const heroTextRef = useRef<HTMLDivElement>(null);
-  const heroRef = useRef<HTMLElement>(null);
+  const carWrapRef    = useRef<HTMLDivElement>(null);
+  const heroTextRef   = useRef<HTMLDivElement>(null);
+  const heroRef       = useRef<HTMLElement>(null);
+  const trackRef      = useRef<HTMLDivElement>(null);
+  const timerRef      = useRef<ReturnType<typeof setInterval> | null>(null);
 
+  const [slideIdx, setSlideIdx]   = useState(0);
+  const [animated, setAnimated]   = useState(true); // controls CSS transition
+
+  /* After landing on the cloned slide, jump silently back to index 0 */
+  const handleTransitionEnd = useCallback(() => {
+    if (slideIdx === CARS.length) {
+      setAnimated(false);
+      setSlideIdx(0);
+    }
+  }, [slideIdx]);
+
+  /* Re-enable transition on the very next frame after silent jump */
+  useEffect(() => {
+    if (!animated) {
+      const id = requestAnimationFrame(() => setAnimated(true));
+      return () => cancelAnimationFrame(id);
+    }
+  }, [animated]);
+
+  /* Auto-advance every 5 s */
+  const advance = useCallback(() => {
+    setAnimated(true);
+    setSlideIdx(prev => prev + 1);
+  }, []);
+
+  useEffect(() => {
+    timerRef.current = setInterval(advance, 5000);
+    return () => { if (timerRef.current) clearInterval(timerRef.current); };
+  }, [advance]);
+
+  /* Restart timer when user clicks a dot */
+  const goTo = (i: number) => {
+    if (timerRef.current) clearInterval(timerRef.current);
+    setAnimated(true);
+    setSlideIdx(i);
+    timerRef.current = setInterval(advance, 5000);
+  };
+
+  /* Parallax on scroll */
   useEffect(() => {
     let ticking = false;
     const onScroll = () => {
       if (ticking) return;
       requestAnimationFrame(() => {
-        const hero = heroRef.current;
-        const carWrap = carWrapRef.current;
+        const hero     = heroRef.current;
+        const carWrap  = carWrapRef.current;
         const heroText = heroTextRef.current;
         if (!hero) { ticking = false; return; }
         const r = hero.getBoundingClientRect();
         if (r.bottom > 0 && r.top < window.innerHeight) {
           const progress = -r.top;
-          if (carWrap) {
-            const offset = Math.max(-40, Math.min(120, progress * 0.18));
-            carWrap.style.transform = `translateY(${offset}px)`;
-          }
-          if (heroText) {
-            heroText.style.transform = `translateY(${-Math.max(0, progress) * 0.06}px)`;
-          }
+          if (carWrap)  carWrap.style.transform  = `translateY(${Math.max(-40, Math.min(120, progress * 0.18))}px)`;
+          if (heroText) heroText.style.transform = `translateY(${-Math.max(0, progress) * 0.06}px)`;
         }
         ticking = false;
       });
@@ -34,6 +81,8 @@ export default function Hero() {
     window.addEventListener('scroll', onScroll, { passive: true });
     return () => window.removeEventListener('scroll', onScroll);
   }, []);
+
+  const activeDot = slideIdx % CARS.length;
 
   return (
     <section
@@ -49,29 +98,22 @@ export default function Hero() {
     >
       {/* Blueprint grid lines */}
       <div className="hero-bg-grid" style={{
-        position: 'absolute',
-        inset: '72px 0 0 0',
+        position: 'absolute', inset: '72px 0 0 0',
         backgroundImage: 'linear-gradient(to right, rgba(14,22,32,0.04) 1px, transparent 1px), linear-gradient(to bottom, rgba(14,22,32,0.04) 1px, transparent 1px)',
         backgroundSize: '80px 80px',
         maskImage: 'radial-gradient(ellipse at 70% 50%, transparent 0%, black 60%)',
         WebkitMaskImage: 'radial-gradient(ellipse at 70% 50%, transparent 0%, black 60%)',
-        pointerEvents: 'none',
-        zIndex: 0,
+        pointerEvents: 'none', zIndex: 0,
       }} />
 
       {/* Coral glow halo */}
       <div style={{
-        position: 'absolute',
-        right: '-10%',
-        top: '50%',
+        position: 'absolute', right: '-10%', top: '50%',
         transform: 'translateY(-50%)',
-        width: '70vw',
-        maxWidth: 900,
-        aspectRatio: '1/1',
+        width: '70vw', maxWidth: 900, aspectRatio: '1/1',
         borderRadius: '50%',
         background: 'radial-gradient(circle at center, rgba(255,82,48,0.18) 0%, rgba(255,82,48,0.06) 35%, transparent 65%)',
-        pointerEvents: 'none',
-        zIndex: 0,
+        pointerEvents: 'none', zIndex: 0,
       }} />
 
       <div className="container" style={{ position: 'relative', zIndex: 2 }}>
@@ -93,9 +135,7 @@ export default function Hero() {
 
             <h1 style={{
               fontSize: 'clamp(3rem, 6.4vw, 5.6rem)',
-              fontWeight: 600,
-              letterSpacing: '-0.035em',
-              lineHeight: 0.98,
+              fontWeight: 600, letterSpacing: '-0.035em', lineHeight: 0.98,
             }}>
               <span style={{ display: 'block' }}>Mashinaning</span>
               <span style={{ display: 'block' }}>butun hayoti —</span>
@@ -109,75 +149,68 @@ export default function Hero() {
             </h1>
 
             <p style={{
-              maxWidth: 460,
-              fontSize: 'clamp(15px, 1.4vw, 17px)',
-              fontWeight: 400,
-              color: 'var(--ink-mute)',
-              lineHeight: 1.55,
+              maxWidth: 460, fontSize: 'clamp(15px, 1.4vw, 17px)',
+              fontWeight: 400, color: 'var(--ink-mute)', lineHeight: 1.55,
             }}>
-              Mashinangizga qilingan har bir ta'mir, har bir almashtirish — telefoningizda saqlanadi. Sotsangiz ham, yangi egasi barchasini ko'radi.
+              Mashinangizga qilingan har bir ta&apos;mir, har bir almashtirish — telefoningizda saqlanadi. Sotsangiz ham, yangi egasi barchasini ko&apos;radi.
             </p>
 
-            {/* Status row */}
             <div style={{ display: 'flex', alignItems: 'center', gap: 18, marginTop: 4 }}>
-              <span style={{
-                display: 'inline-flex', alignItems: 'center', gap: 8,
-                fontFamily: 'var(--f-mono)', fontSize: 11, letterSpacing: '0.14em',
-                textTransform: 'uppercase', color: 'var(--ink-mute)',
-              }}>
-                <span style={{
-                  width: 8, height: 8, borderRadius: '50%', background: 'var(--accent)',
-                  animation: 'pulse-dot 2s ease-out infinite',
-                }} />
+              <span style={{ display: 'inline-flex', alignItems: 'center', gap: 8, fontFamily: 'var(--f-mono)', fontSize: 11, letterSpacing: '0.14em', textTransform: 'uppercase', color: 'var(--ink-mute)' }}>
+                <span style={{ width: 8, height: 8, borderRadius: '50%', background: 'var(--accent)', animation: 'pulse-dot 2s ease-out infinite' }} />
                 14 viloyatda mavjud
               </span>
-              <span style={{
-                display: 'inline-flex', alignItems: 'center', gap: 8,
-                fontFamily: 'var(--f-mono)', fontSize: 11, letterSpacing: '0.14em',
-                textTransform: 'uppercase', color: 'var(--ink-mute)',
-              }}>
+              <span style={{ display: 'inline-flex', alignItems: 'center', gap: 8, fontFamily: 'var(--f-mono)', fontSize: 11, letterSpacing: '0.14em', textTransform: 'uppercase', color: 'var(--ink-mute)' }}>
                 380+ ishonchli usta
               </span>
             </div>
           </div>
 
-          {/* RIGHT: Car visual */}
+          {/* RIGHT: Car carousel */}
           <div style={{
-            position: 'relative',
-            display: 'flex',
-            flexDirection: 'column',
-            justifyContent: 'flex-end',
-            height: '100%',
-            minHeight: 580,
-            overflow: 'visible',
-            paddingBottom: 72,
+            position: 'relative', display: 'flex', flexDirection: 'column',
+            justifyContent: 'flex-end', height: '100%', minHeight: 580,
+            overflow: 'visible', paddingBottom: 72,
           }} className="hero-visual-wrap">
 
-            {/* Car image */}
             <div ref={carWrapRef} className="hero-car-wrap" style={{
-              position: 'relative',
-              flex: 1,
-              minHeight: 420,
-              right: '-18%',
-              width: 'calc(100% + 18%)',
-              willChange: 'transform',
+              position: 'relative', flex: 1, minHeight: 420,
+              right: '-18%', width: 'calc(100% + 18%)',
+              willChange: 'transform', overflow: 'hidden',
             }}>
-              {/* eslint-disable-next-line @next/next/no-img-element */}
-              <img
-                src="/cobalt.png"
-                alt="Chevrolet Cobalt avtomobil"
-                loading="eager"
+              {/* Sliding track */}
+              <div
+                ref={trackRef}
+                onTransitionEnd={handleTransitionEnd}
                 style={{
-                  width: '100%',
+                  display: 'flex',
+                  width: `${SLIDES.length * 100}%`,
                   height: '100%',
-                  objectFit: 'contain',
-                  objectPosition: 'right bottom',
-                  display: 'block',
-                  mixBlendMode: 'multiply',
-                  filter: 'drop-shadow(0 28px 48px rgba(14,22,32,0.20)) drop-shadow(0 6px 12px rgba(14,22,32,0.08))',
-                  transform: 'translateY(-16px)',
+                  transform: `translateX(${-slideIdx * (100 / SLIDES.length)}%)`,
+                  transition: animated ? 'transform 0.72s cubic-bezier(0.77,0,0.18,1)' : 'none',
                 }}
-              />
+              >
+                {SLIDES.map((car, i) => (
+                  <div key={i} style={{ width: `${100 / SLIDES.length}%`, flexShrink: 0, height: '100%', position: 'relative' }}>
+                    {/* eslint-disable-next-line @next/next/no-img-element */}
+                    <img
+                      src={car.src}
+                      alt={car.alt}
+                      loading={i === 0 ? 'eager' : 'lazy'}
+                      draggable={false}
+                      style={{
+                        width: '100%', height: '100%',
+                        objectFit: 'contain', objectPosition: 'right bottom',
+                        display: 'block',
+                        mixBlendMode: 'multiply',
+                        filter: 'drop-shadow(0 28px 48px rgba(14,22,32,0.20)) drop-shadow(0 6px 12px rgba(14,22,32,0.08))',
+                        transform: 'translateY(-16px)',
+                        userSelect: 'none',
+                      }}
+                    />
+                  </div>
+                ))}
+              </div>
 
               {/* VIN badge */}
               <span className="hero-vin-badge" style={{
@@ -191,16 +224,50 @@ export default function Hero() {
                 <span style={{ width: 6, height: 6, background: '#fff', borderRadius: '50%', animation: 'pulse-dot 2s ease-out infinite' }} />
                 VIN aniqlandi
               </span>
+
+              {/* Progress bar */}
+              <div style={{
+                position: 'absolute', bottom: 0, left: 0, right: 0,
+                height: 2, background: 'rgba(14,22,32,0.08)', zIndex: 4,
+              }}>
+                <div
+                  key={activeDot}
+                  style={{
+                    height: '100%',
+                    background: 'var(--accent)',
+                    animation: 'car-progress 5s linear forwards',
+                  }}
+                />
+              </div>
+
+              {/* Dot indicators */}
+              <div style={{
+                position: 'absolute', bottom: 14, left: '50%',
+                transform: 'translateX(-50%)',
+                display: 'flex', gap: 7, zIndex: 4,
+              }}>
+                {CARS.map((_, i) => (
+                  <button
+                    key={i}
+                    onClick={() => goTo(i)}
+                    aria-label={`Mashina ${i + 1}`}
+                    style={{
+                      width: i === activeDot ? 22 : 7, height: 7,
+                      borderRadius: 999, border: 'none', cursor: 'pointer', padding: 0,
+                      background: i === activeDot ? 'var(--accent)' : 'rgba(14,22,32,0.22)',
+                      transition: 'width 0.4s cubic-bezier(0.77,0,0.18,1), background 0.3s',
+                    }}
+                  />
+                ))}
+              </div>
             </div>
 
-            {/* Meta card — below the car */}
+            {/* Meta card */}
             <div className="hero-meta-card" style={{
-              position: 'relative', zIndex: 4,
-              background: '#0E1620',
+              position: 'relative', zIndex: 4, background: '#0E1620',
               borderRadius: 16, padding: '18px 24px',
               display: 'grid', gridTemplateColumns: 'auto 1px auto auto',
               gap: 20, alignItems: 'center',
-              marginTop: 0,
               boxShadow: '0 16px 40px -12px rgba(14,22,32,0.28)',
             }}>
               <div>
@@ -234,10 +301,7 @@ export default function Hero() {
           WebkitMaskImage: 'linear-gradient(to right, transparent, black 8%, black 92%, transparent)',
         }}>
           {[0, 1].map(i => (
-            <div key={i} style={{
-              display: 'flex', gap: 56, flexShrink: 0,
-              animation: 'marquee 36s linear infinite',
-            }}>
+            <div key={i} style={{ display: 'flex', gap: 56, flexShrink: 0, animation: 'marquee 36s linear infinite' }}>
               {['VIN — yagona identifikator', 'Tekshirilgan ustalar', 'Servis avtomatik yoziladi', 'Tarix sotuvda saqlanadi', "14 viloyat bo'ylab", 'Texpasport bitta surat'].map((text) => (
                 <span key={text} style={{
                   fontFamily: 'var(--f-mono)', fontSize: 11, letterSpacing: '0.18em',
@@ -254,6 +318,10 @@ export default function Hero() {
       </div>
 
       <style>{`
+        @keyframes car-progress {
+          from { width: 0; }
+          to   { width: 100%; }
+        }
         @media (max-width: 980px) {
           .hero-grid { grid-template-columns: 1fr !important; gap: 32px !important; padding-block: 60px 80px !important; }
           .hero-visual-wrap { min-height: 340px !important; overflow: hidden !important; }

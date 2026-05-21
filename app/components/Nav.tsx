@@ -35,22 +35,13 @@ export default function Nav() {
         justifyContent: 'space-between',
         gap: 16,
       }}>
-        <a href="#top" style={{ display: 'flex', alignItems: 'center', gap: 12, textDecoration: 'none' }}>
-          {/* Light logo (for light bg) */}
+        <a href="#top" style={{ display: 'flex', alignItems: 'center', gap: 10, textDecoration: 'none' }}>
           {/* eslint-disable-next-line @next/next/no-img-element */}
           <img
-            src="/temir-xotin-light.svg"
-            alt="Temir Xotin logo"
-            className="nav-logo nav-logo-light"
-            style={{ display: theme === 'dark' ? 'none' : 'block', flexShrink: 0, height: 44, width: 'auto' }}
-          />
-          {/* Dark logo (for dark bg) */}
-          {/* eslint-disable-next-line @next/next/no-img-element */}
-          <img
-            src="/temir-xotin-dark.svg"
-            alt="Temir Xotin logo"
-            className="nav-logo nav-logo-dark"
-            style={{ display: theme === 'dark' ? 'block' : 'none', flexShrink: 0, height: 44, width: 'auto' }}
+            src={theme === 'dark' ? '/logo-white.webp' : '/logo-transparent.webp'}
+            alt="Moshn logo"
+            className="nav-logo"
+            style={{ flexShrink: 0, height: 40, width: 40, objectFit: 'contain' }}
           />
           <span className="nav-brand-text" style={{
             fontFamily: 'var(--f-display)',
@@ -58,7 +49,7 @@ export default function Nav() {
             fontSize: 17,
             color: 'var(--ink)',
             letterSpacing: '-0.01em',
-          }}>Temir Xotin</span>
+          }}>Moshn</span>
         </a>
 
         <div style={{ display: 'flex', alignItems: 'center', gap: 10 }}>

@@ -4,8 +4,8 @@ import { useEffect, useRef, useState } from 'react';
 
 const stats = [
   { count: 1248, suffix: '+', label: "Ulangan mashinalar", sub: "Toshkent, Samarqand, Buxoro, Farg'ona va boshqa shaharlarda" },
-  { count: 124, suffix: '+', label: 'Ishonchli ustalar', sub: "Ta'mir · elektr · kuzov ishlari" },
-  { count: null, text: '24/7', label: 'Har doim ochiq', sub: 'Ilovani oching — internet bo\'lmasa ham ishlaydi' },
+  { count: 124,  suffix: '+', label: 'Ishonchli ustalar',  sub: "Ta'mir · elektr · kuzov ishlari" },
+  { count: null, text: '24/7', label: 'Har doim ochiq',   sub: "Ilovani oching — internet bo'lmasa ham ishlaydi" },
 ];
 
 function useCountUp(target: number | null, active: boolean) {
@@ -53,17 +53,17 @@ function StatItem({ count, suffix, text, label, sub, delay }: { count: number | 
   }, [delay]);
 
   return (
-    <div ref={ref} className="reveal" style={{ padding: '24px 32px', borderRight: '1px solid var(--border)' }} data-last={label === stats[stats.length - 1].label}>
-      <div style={{
+    <div ref={ref} className="reveal stat-item" style={{ padding: '24px 32px', borderRight: '1px solid var(--border)' }}>
+      <div className="stats-num" style={{
         fontFamily: 'var(--f-display)', fontWeight: 600,
         fontSize: 'clamp(4rem, 9vw, 7.5rem)',
         color: 'var(--ink)', letterSpacing: '-0.045em', lineHeight: 1,
       }}>
-        {text ?? value.toLocaleString('en-US').replace(/,/g, ' ')}
+        {text ?? value.toLocaleString('en-US').replace(/,/g, ' ')}
         <span style={{ color: 'var(--accent)' }}>{text ? '' : suffix}</span>
       </div>
-      <div style={{ marginTop: 14, fontFamily: 'var(--f-mono)', fontSize: 11, letterSpacing: '0.14em', textTransform: 'uppercase', color: 'var(--ink-mute)' }}>{label}</div>
-      <div style={{ marginTop: 8, color: 'var(--ink-mute)', fontSize: 14, maxWidth: '30ch' }}>{sub}</div>
+      <div className="stats-label" style={{ marginTop: 14, fontFamily: 'var(--f-mono)', fontSize: 11, letterSpacing: '0.14em', textTransform: 'uppercase', color: 'var(--ink-mute)' }}>{label}</div>
+      <div className="stats-sub" style={{ marginTop: 8, color: 'var(--ink-mute)', fontSize: 14, maxWidth: '30ch' }}>{sub}</div>
     </div>
   );
 }
@@ -86,7 +86,7 @@ export default function Stats() {
             <span style={{ fontFamily: 'var(--f-mono)', fontSize: 11, letterSpacing: '0.16em', color: 'var(--ink-soft)', textTransform: 'uppercase' }}>§ 04 — Trafik</span>
           </div>
           <h2 style={{ fontSize: 'clamp(2.4rem, 4.8vw, 4rem)', fontWeight: 600, letterSpacing: '-0.03em', lineHeight: 1 }}>
-            O'zbekiston bo'ylab,{' '}
+            O&apos;zbekiston bo&apos;ylab,{' '}
             <span style={{ color: 'var(--accent)', fontStyle: 'italic', fontWeight: 500 }}>faol.</span>
           </h2>
         </div>
@@ -99,17 +99,26 @@ export default function Stats() {
       </div>
 
       <style>{`
-        .stats-grid > div:last-child { border-right: none !important; }
+        .stats-grid > .stat-item:last-child { border-right: none !important; }
+
         @media (max-width: 900px) {
-          .section-head-stats { grid-template-columns: 1fr !important; gap: 18px !important; margin-bottom: 40px !important; }
+          .section-head-stats { grid-template-columns: 1fr !important; gap: 18px !important; margin-bottom: 36px !important; }
         }
+
         @media (max-width: 760px) {
-          .stats-grid { grid-template-columns: 1fr !important; }
-          .stats-grid > div { border-right: none !important; border-bottom: 1px solid var(--border) !important; padding: 24px 8px !important; }
-          .stats-grid > div:last-child { border-bottom: none !important; }
+          .stats-grid { grid-template-columns: 1fr 1fr !important; }
+          .stat-item { border-right: 1px solid var(--border) !important; border-bottom: 1px solid var(--border) !important; padding: 18px 16px !important; }
+          .stat-item:nth-child(even) { border-right: none !important; }
+          .stat-item:last-child { grid-column: 1 / -1 !important; border-bottom: none !important; border-right: none !important; border-top: 1px solid var(--border) !important; }
+          .stats-num { font-size: clamp(2.6rem, 10vw, 3.8rem) !important; }
+          .stats-label { font-size: 10px !important; margin-top: 8px !important; }
+          .stats-sub { font-size: 12px !important; margin-top: 4px !important; }
         }
+
         @media (max-width: 480px) {
-          .stats-grid > div { padding: 20px 0 !important; }
+          .stat-item { padding: 14px 12px !important; }
+          .stats-num { font-size: clamp(2rem, 8.5vw, 2.8rem) !important; }
+          .stats-sub { display: none !important; }
         }
       `}</style>
     </section>

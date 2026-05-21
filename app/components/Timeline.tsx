@@ -112,6 +112,7 @@ export default function Timeline() {
             <StepItem
               key={i}
               ref={(el) => { stepRefs.current[i] = el; }}
+              isLast={i === steps.length - 1}
               {...step}
             />
           ))}
@@ -120,13 +121,18 @@ export default function Timeline() {
 
       <style>{`
         @media (max-width: 900px) {
-          .section-head-tl { grid-template-columns: 1fr !important; gap: 18px !important; margin-bottom: 56px !important; }
-          .tl-grid { grid-template-columns: 1fr !important; gap: 56px !important; }
+          .section-head-tl { grid-template-columns: 1fr !important; gap: 18px !important; margin-bottom: 48px !important; }
+          .tl-grid { grid-template-columns: 1fr 1fr !important; gap: 36px 20px !important; }
           .tl-track { display: none !important; }
         }
         @media (max-width: 640px) {
-          .tl-grid { gap: 40px !important; }
-          .tl-icon { width: 64px !important; height: 64px !important; }
+          .tl-grid { gap: 28px 14px !important; }
+          .tl-step-last { grid-column: 1 / -1 !important; max-width: 240px !important; }
+          .tl-icon { width: 60px !important; height: 60px !important; }
+          .tl-icon svg { width: 26px !important; height: 26px !important; }
+          .tl-step h3 { font-size: clamp(1rem, 4vw, 1.15rem) !important; }
+          .tl-step p { font-size: 12px !important; line-height: 1.5 !important; }
+          .tl-step-num { font-size: 10px !important; }
         }
       `}</style>
     </section>
@@ -135,14 +141,14 @@ export default function Timeline() {
 
 import React from 'react';
 
-const StepItem = React.forwardRef<HTMLDivElement, typeof steps[0]>(
-  ({ icon, num, title, body }, ref) => {
+const StepItem = React.forwardRef<HTMLDivElement, typeof steps[0] & { isLast?: boolean }>(
+  ({ icon, num, title, body, isLast }, ref) => {
     const [hovered, setHovered] = React.useState(false);
 
     return (
       <div
         ref={ref}
-        className="reveal"
+        className={`reveal tl-step${isLast ? ' tl-step-last' : ''}`}
         onMouseEnter={() => setHovered(true)}
         onMouseLeave={() => setHovered(false)}
         style={{ position: 'relative', paddingRight: 24 }}
@@ -159,7 +165,7 @@ const StepItem = React.forwardRef<HTMLDivElement, typeof steps[0]>(
         }}>
           {icon}
         </div>
-        <div style={{ fontFamily: 'var(--f-mono)', fontSize: 11, letterSpacing: '0.18em', color: 'var(--accent)', textTransform: 'uppercase', marginBottom: 8 }}>{num}</div>
+        <div className="tl-step-num" style={{ fontFamily: 'var(--f-mono)', fontSize: 11, letterSpacing: '0.18em', color: 'var(--accent)', textTransform: 'uppercase', marginBottom: 8 }}>{num}</div>
         <h3 style={{ fontFamily: 'var(--f-display)', fontWeight: 600, fontSize: 'clamp(1.5rem, 2.2vw, 1.9rem)', letterSpacing: '-0.02em', marginBottom: 10, lineHeight: 1.1 }}>{title}</h3>
         <p style={{ color: 'var(--ink-mute)', fontSize: 15, lineHeight: 1.55, maxWidth: '30ch' }}>{body}</p>
       </div>
