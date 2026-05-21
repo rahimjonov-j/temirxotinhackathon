@@ -56,7 +56,7 @@ function StatItem({ count, suffix, text, label, sub, delay }: { count: number | 
     <div ref={ref} className="reveal stat-item" style={{ padding: '24px 32px', borderRight: '1px solid var(--border)' }}>
       <div className="stats-num" style={{
         fontFamily: 'var(--f-display)', fontWeight: 600,
-        fontSize: 'clamp(4rem, 9vw, 7.5rem)',
+        fontSize: 'clamp(2.8rem, 5vw, 4.8rem)',
         color: 'var(--ink)', letterSpacing: '-0.045em', lineHeight: 1,
       }}>
         {text ?? value.toLocaleString('en-US').replace(/,/g, ' ')}
@@ -110,14 +110,14 @@ export default function Stats() {
           .stat-item { border-right: 1px solid var(--border) !important; border-bottom: 1px solid var(--border) !important; padding: 18px 16px !important; }
           .stat-item:nth-child(even) { border-right: none !important; }
           .stat-item:last-child { grid-column: 1 / -1 !important; border-bottom: none !important; border-right: none !important; border-top: 1px solid var(--border) !important; }
-          .stats-num { font-size: clamp(2.6rem, 10vw, 3.8rem) !important; }
+          .stats-num { font-size: clamp(2rem, 8vw, 3rem) !important; }
           .stats-label { font-size: 10px !important; margin-top: 8px !important; }
           .stats-sub { font-size: 12px !important; margin-top: 4px !important; }
         }
 
         @media (max-width: 480px) {
           .stat-item { padding: 14px 12px !important; }
-          .stats-num { font-size: clamp(2rem, 8.5vw, 2.8rem) !important; }
+          .stats-num { font-size: clamp(1.6rem, 7vw, 2.2rem) !important; }
           .stats-sub { display: none !important; }
         }
       `}</style>
