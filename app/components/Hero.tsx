@@ -48,7 +48,7 @@ export default function Hero() {
       }}
     >
       {/* Blueprint grid lines */}
-      <div style={{
+      <div className="hero-bg-grid" style={{
         position: 'absolute',
         inset: '72px 0 0 0',
         backgroundImage: 'linear-gradient(to right, rgba(14,22,32,0.04) 1px, transparent 1px), linear-gradient(to bottom, rgba(14,22,32,0.04) 1px, transparent 1px)',
@@ -196,7 +196,7 @@ export default function Hero() {
             {/* Meta card — below the car */}
             <div className="hero-meta-card" style={{
               position: 'relative', zIndex: 4,
-              background: 'var(--ink)',
+              background: '#0E1620',
               borderRadius: 16, padding: '18px 24px',
               display: 'grid', gridTemplateColumns: 'auto 1px auto auto',
               gap: 20, alignItems: 'center',

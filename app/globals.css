@@ -24,6 +24,57 @@
   --max: 1280px;
 }
 
+/* ============================================================
+   DARK MODE TOKENS
+   ============================================================ */
+[data-theme="dark"] {
+  --bg:          #0E1620;
+  --bg-2:        #131D2B;
+  --surface:     #1A2535;
+  --ink:         #F2ECE2;
+  --ink-2:       #E0D8CC;
+  --ink-mute:    #9AA3AF;
+  --ink-soft:    #6B7580;
+  --accent:      #FF5230;
+  --accent-deep: #FF6B4D;
+  --accent-tint: rgba(255, 82, 48, 0.15);
+  --border:      rgba(242, 236, 226, 0.10);
+  --border-2:    rgba(242, 236, 226, 0.18);
+}
+
+@media (prefers-color-scheme: dark) {
+  :root:not([data-theme]) {
+    --bg:          #0E1620;
+    --bg-2:        #131D2B;
+    --surface:     #1A2535;
+    --ink:         #F2ECE2;
+    --ink-2:       #E0D8CC;
+    --ink-mute:    #9AA3AF;
+    --ink-soft:    #6B7580;
+    --accent:      #FF5230;
+    --accent-deep: #FF6B4D;
+    --accent-tint: rgba(255, 82, 48, 0.15);
+    --border:      rgba(242, 236, 226, 0.10);
+    --border-2:    rgba(242, 236, 226, 0.18);
+  }
+}
+
+/* ============================================================
+   DARK MODE OVERRIDES — hardcoded rgba colors in components
+   ============================================================ */
+[data-theme="dark"] .hero-bg-grid {
+  background-image:
+    linear-gradient(to right, rgba(255,255,255,0.05) 1px, transparent 1px),
+    linear-gradient(to bottom, rgba(255,255,255,0.05) 1px, transparent 1px) !important;
+}
+@media (prefers-color-scheme: dark) {
+  :root:not([data-theme]) .hero-bg-grid {
+    background-image:
+      linear-gradient(to right, rgba(255,255,255,0.05) 1px, transparent 1px),
+      linear-gradient(to bottom, rgba(255,255,255,0.05) 1px, transparent 1px) !important;
+  }
+}
+
 *, *::before, *::after { box-sizing: border-box; }
 html { scroll-behavior: smooth; overflow-x: hidden; }
 

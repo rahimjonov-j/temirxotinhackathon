@@ -1,5 +1,6 @@
 import type { Metadata } from "next";
 import { IBM_Plex_Mono } from "next/font/google";
+import { ThemeProvider } from "./components/ThemeProvider";
 import "./globals.css";
 
 const ibmPlexMono = IBM_Plex_Mono({
@@ -8,15 +9,133 @@ const ibmPlexMono = IBM_Plex_Mono({
   weight: ["400", "500"],
 });
 
+const SITE_URL = "https://temirxotin.uz";
+
 export const metadata: Metadata = {
-  title: "Temir Xotin — Mashinaning butun hayoti, bir joyda",
-  description:
-    "VIN raqami orqali har bir servis, har bir almashtirish — abadiy saqlanadi. Mashinangizni sotsangiz, butun tarix yangi egaga o'tadi.",
-  icons: {
-    icon: "/temir-xotin-dark-square.svg",
-    apple: "/temir-xotin-dark-square.png",
+  metadataBase: new URL(SITE_URL),
+
+  title: {
+    default: "Temir Xotin — Mashinangiz tarixi, bir joyda",
+    template: "%s | Temir Xotin",
   },
+  description:
+    "Har bir ta'mir, har bir moy almashtirish — telefoningizda saqlanadi. Mashinani sotsangiz, butun tarix yangi egaga o'tadi. O'zbekiston bo'ylab 380+ ishonchli usta.",
+
+  keywords: [
+    "mashina tarixi",
+    "avto servis Toshkent",
+    "avtomobil ta'miri",
+    "VIN raqam",
+    "texpasport skaner",
+    "mashina ta'mir yozuvi",
+    "servis kitobi",
+    "temir xotin",
+    "usta topish",
+    "avtoservis O'zbekiston",
+    "car service history uzbekistan",
+    "mashina sotish tarix",
+    "Chevrolet Cobalt servis",
+    "avtomobil tarixi ilovasi",
+  ],
+
+  authors: [{ name: "Temir Xotin", url: SITE_URL }],
+  creator: "Temir Xotin",
+  publisher: "Temir Xotin",
+
+  robots: {
+    index: true,
+    follow: true,
+    googleBot: {
+      index: true,
+      follow: true,
+      "max-image-preview": "large",
+      "max-snippet": -1,
+      "max-video-preview": -1,
+    },
+  },
+
+  alternates: {
+    canonical: SITE_URL,
+    languages: {
+      "uz-UZ": SITE_URL,
+    },
+  },
+
+  openGraph: {
+    type: "website",
+    locale: "uz_UZ",
+    url: SITE_URL,
+    siteName: "Temir Xotin",
+    title: "Temir Xotin — Mashinangiz tarixi, bir joyda",
+    description:
+      "Har bir ta'mir, har bir almashtirish — telefoningizda saqlanadi. Mashinani sotsangiz, butun tarix yangi egaga o'tadi.",
+  },
+
+  twitter: {
+    card: "summary_large_image",
+    title: "Temir Xotin — Mashinangiz tarixi, bir joyda",
+    description:
+      "Har bir ta'mir, har bir almashtirish — telefoningizda saqlanadi. O'zbekiston bo'ylab 380+ ishonchli usta.",
+  },
+
+  icons: {
+    icon: [
+      { url: "/temir-xotin-dark-square.svg", type: "image/svg+xml" },
+      { url: "/temir-xotin-dark-square.png", sizes: "192x192", type: "image/png" },
+    ],
+    apple: [
+      { url: "/temir-xotin-dark-square.png", sizes: "180x180", type: "image/png" },
+    ],
+    shortcut: "/temir-xotin-dark-square.png",
+  },
+
+  category: "technology",
 };
+
+const jsonLd = {
+  "@context": "https://schema.org",
+  "@graph": [
+    {
+      "@type": "Organization",
+      "@id": `${SITE_URL}/#organization`,
+      name: "Temir Xotin",
+      url: SITE_URL,
+      logo: {
+        "@type": "ImageObject",
+        url: `${SITE_URL}/temir-xotin-light.svg`,
+      },
+      description:
+        "O'zbekistonda avtomobil servis tarixi va ishonchli ustalar platformasi.",
+      areaServed: { "@type": "Country", name: "Uzbekistan" },
+    },
+    {
+      "@type": "MobileApplication",
+      "@id": `${SITE_URL}/#app`,
+      name: "Temir Xotin",
+      operatingSystem: "ANDROID, IOS",
+      applicationCategory: "UtilitiesApplication",
+      description:
+        "Mashinangizga qilingan har bir ta'mir va xizmatni saqlang. Texpasportni skan qiling — mashina ma'lumotlari avtomatik qo'shiladi.",
+      offers: { "@type": "Offer", price: "0", priceCurrency: "UZS" },
+      aggregateRating: {
+        "@type": "AggregateRating",
+        ratingValue: "4.8",
+        ratingCount: "124",
+      },
+    },
+    {
+      "@type": "WebSite",
+      "@id": `${SITE_URL}/#website`,
+      url: SITE_URL,
+      name: "Temir Xotin",
+      publisher: { "@id": `${SITE_URL}/#organization` },
+      inLanguage: "uz-UZ",
+    },
+  ],
+};
+
+/* Anti-flash: set theme before first paint */
+const themeScript = `(function(){var t=localStorage.getItem('tx-theme')||(matchMedia('(prefers-color-scheme:dark)').matches?'dark':'light');document.documentElement.dataset.theme=t;})();`;
 
 export default function RootLayout({
   children,
@@ -26,14 +145,22 @@ export default function RootLayout({
   return (
     <html lang="uz" className={`${ibmPlexMono.variable}`}>
       <head>
+        {/* eslint-disable-next-line @next/next/no-before-interactive-script-outside-document */}
+        <script dangerouslySetInnerHTML={{ __html: themeScript }} />
         <link rel="preconnect" href="https://api.fontshare.com" crossOrigin="anonymous" />
         <link rel="preconnect" href="https://images.unsplash.com" crossOrigin="anonymous" />
         <link
           href="https://api.fontshare.com/v2/css?f[]=clash-display@500,600,700&f[]=switzer@300,400,500,600&display=swap"
           rel="stylesheet"
         />
+        <script
+          type="application/ld+json"
+          dangerouslySetInnerHTML={{ __html: JSON.stringify(jsonLd) }}
+        />
       </head>
-      <body>{children}</body>
+      <body>
+        <ThemeProvider>{children}</ThemeProvider>
+      </body>
     </html>
   );
 }

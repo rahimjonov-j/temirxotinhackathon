@@ -71,7 +71,7 @@ export default function VinBlueprint() {
 
   return (
     <section id="blueprint" style={{
-      background: 'var(--ink)', color: 'var(--bg)',
+      background: '#0E1620', color: '#F2ECE2',
       overflow: 'hidden', position: 'relative',
       paddingBlock: 'clamp(96px, 12vw, 160px)',
     }}>
@@ -284,7 +284,7 @@ export default function VinBlueprint() {
             { k: 'Oxirgi tashrif', v: '12.04.2026', coral: false },
             { k: 'Egasi', v: '2-egasi · Toshkent', coral: false },
           ].map((cell) => (
-            <div key={cell.k} style={{ background: 'var(--ink)', padding: 22 }}>
+            <div key={cell.k} style={{ background: '#0E1620', padding: 22 }}>
               <div style={{ fontFamily: 'var(--f-mono)', fontSize: 10, letterSpacing: '0.16em', textTransform: 'uppercase', color: 'rgba(255,255,255,0.45)', marginBottom: 8 }}>{cell.k}</div>
               <div style={{ fontFamily: 'var(--f-display)', fontWeight: 500, fontSize: 20, letterSpacing: '-0.01em', color: cell.coral ? 'var(--accent)' : '#fff' }}>{cell.v}</div>
             </div>

@@ -5,26 +5,26 @@ export default function Cta() {
     <section id="download" style={{
       position: 'relative', overflow: 'hidden',
       paddingBlock: 'clamp(120px, 16vw, 200px)',
-      background: 'var(--ink)', color: '#fff',
+      background: '#0E1620', color: '#fff',
     }}>
-      {/* Chevrolet Cobalt — O'zbekistonda eng ko'p uchraydigan GM mashina */}
       {/* eslint-disable-next-line @next/next/no-img-element */}
       <img
-        src="https://images.unsplash.com/photo-1609521263047-f8f205293f24?w=1800&q=80&auto=format&fit=crop&crop=center"
+        src="/cobalt.png"
         alt=""
         aria-hidden="true"
         loading="lazy"
         style={{
           position: 'absolute', inset: 0, width: '100%', height: '100%',
-          objectFit: 'cover', objectPosition: 'center 60%',
-          opacity: 0.38, zIndex: 0,
-          filter: 'saturate(0.7) contrast(1.1)',
+          objectFit: 'cover', objectPosition: 'center 55%',
+          opacity: 0.22, zIndex: 0,
+          filter: 'grayscale(0.4) contrast(1.15)',
+          mixBlendMode: 'luminosity',
         }}
       />
       {/* Dark overlay */}
       <div style={{
         position: 'absolute', inset: 0, zIndex: 1, pointerEvents: 'none',
-        background: 'radial-gradient(ellipse at 50% 50%, transparent 0%, rgba(14,22,32,0.6) 65%, rgba(14,22,32,0.97) 100%), linear-gradient(180deg, rgba(14,22,32,0.5) 0%, transparent 35%, transparent 65%, rgba(14,22,32,0.7) 100%)',
+        background: 'radial-gradient(ellipse at 50% 50%, rgba(14,22,32,0.55) 0%, rgba(14,22,32,0.82) 60%, rgba(14,22,32,0.98) 100%)',
       }} />
 
       <div className="container cta-text" style={{ position: 'relative', zIndex: 2, textAlign: 'center', maxWidth: 880, marginInline: 'auto' }}>
