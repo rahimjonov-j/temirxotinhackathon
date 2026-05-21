@@ -75,18 +75,15 @@ export default function Editorial() {
   }, []);
 
   return (
-    <section id="nega" style={{ background: 'var(--bg)', borderTop: '1px solid var(--border)', paddingBlock: 'clamp(96px, 12vw, 160px)' }}>
+    <section id="nega" style={{ background: 'var(--bg)', borderTop: '1px solid var(--border)', paddingBlock: 'var(--section-py)' }}>
       <div className="container">
         {/* Section head */}
-        <div style={{
-          display: 'grid', gridTemplateColumns: '1fr 2fr',
-          gap: 48, alignItems: 'end', marginBottom: 80,
-        }} className="section-head-ed">
-          <div style={{ display: 'flex', flexDirection: 'column', gap: 14 }}>
+        <div className="section-head section-head-ed">
+          <div style={{ display: 'flex', flexDirection: 'column', gap: 10 }}>
             <span className="mono-label"><span className="dot" />Nima beradi</span>
-            <span style={{ fontFamily: 'var(--f-mono)', fontSize: 11, letterSpacing: '0.16em', color: 'var(--ink-soft)', textTransform: 'uppercase' }}>§ 01 — Imkoniyatlar</span>
+            <span style={{ fontFamily: 'var(--f-mono)', fontSize: 10, letterSpacing: '0.16em', color: 'var(--ink-soft)', textTransform: 'uppercase' }}>§ 01 — Imkoniyatlar</span>
           </div>
-          <h2 style={{ fontSize: 'clamp(2.4rem, 4.8vw, 4rem)', fontWeight: 600, letterSpacing: '-0.03em', lineHeight: 1 }}>
+          <h2 style={{ fontSize: 'clamp(1.8rem, 3.6vw, 3.2rem)', fontWeight: 600, letterSpacing: '-0.03em', lineHeight: 1.05 }}>
             Uchta sabab —{' '}
             <span style={{ color: 'var(--accent)', fontStyle: 'italic', fontWeight: 500 }}>yetarli.</span>
           </h2>
@@ -107,29 +104,21 @@ export default function Editorial() {
       </div>
 
       <style>{`
-        @media (max-width: 900px) {
-          .section-head-ed { grid-template-columns: 1fr !important; gap: 18px !important; margin-bottom: 48px !important; }
+        @media (max-width: 860px) {
+          .section-head-ed { grid-template-columns: 1fr !important; gap: 12px !important; }
         }
-        @media (max-width: 980px) {
-          .ed-row-grid { grid-template-columns: 1fr !important; gap: 14px !important; padding-block: 36px !important; }
-          .ed-glyph-wrap { justify-content: flex-start !important; height: 80px !important; }
-        }
-        @media (max-width: 640px) {
-          .ed-rows-wrap { display: grid !important; grid-template-columns: 1fr 1fr !important; gap: 0 !important; }
-          .ed-row-grid {
-            padding: 20px 16px !important;
-            gap: 8px !important;
-            border-top: 1px solid var(--border) !important;
-            border-bottom: none !important;
-            border-right: 1px solid var(--border) !important;
-          }
-          .ed-row-grid:nth-child(even) { border-right: none !important; }
-          .ed-row-grid:last-child { border-bottom: 1px solid var(--border) !important; }
-          .ed-row-grid:nth-last-child(2) { border-bottom: 1px solid var(--border) !important; }
+        @media (max-width: 860px) {
+          .ed-row-grid { grid-template-columns: 100px 1fr !important; gap: 16px !important; }
           .ed-glyph-wrap { display: none !important; }
-          .ed-num { font-size: clamp(2.6rem, 11vw, 4rem) !important; margin-bottom: 6px !important; }
-          .ed-row-grid h3 { font-size: clamp(1rem, 4vw, 1.2rem) !important; margin-bottom: 6px !important; }
-          .ed-row-grid p { font-size: 12px !important; line-height: 1.5 !important; }
+        }
+        @media (max-width: 560px) {
+          .ed-rows-wrap { display: grid !important; grid-template-columns: 1fr 1fr !important; }
+          .ed-row-grid { grid-template-columns: 1fr !important; padding: 18px 14px !important; gap: 7px !important; border-right: 1px solid var(--border) !important; border-bottom: none !important; }
+          .ed-row-grid:nth-child(even) { border-right: none !important; }
+          .ed-row-grid:nth-last-child(-n+2) { border-bottom: 1px solid var(--border) !important; }
+          .ed-num { font-size: clamp(2.4rem, 9vw, 3.6rem) !important; }
+          .ed-row-grid h3 { font-size: clamp(0.9rem, 3.5vw, 1.1rem) !important; margin-bottom: 5px !important; }
+          .ed-row-grid p { font-size: 11px !important; }
         }
       `}</style>
     </section>
@@ -152,9 +141,10 @@ const EdRow = React.forwardRef<HTMLElement, {
       onMouseLeave={() => setHovered(false)}
       style={{
         display: 'grid',
-        gridTemplateColumns: '220px 1fr 360px',
-        gap: 48, alignItems: 'start',
-        paddingBlock: 56,
+        gridTemplateColumns: '140px 1fr 260px',
+        gap: 'clamp(20px, 3vw, 36px)',
+        alignItems: 'start',
+        paddingBlock: 'clamp(28px, 3.5vw, 44px)',
         borderTop: '1px solid var(--border)',
         borderBottom: isLast ? '1px solid var(--border)' : undefined,
         position: 'relative',
@@ -165,10 +155,10 @@ const EdRow = React.forwardRef<HTMLElement, {
     >
       <div className="ed-num" style={{
         fontFamily: 'var(--f-display)', fontWeight: 600,
-        fontSize: 'clamp(5rem, 10vw, 9rem)', lineHeight: 0.85,
+        fontSize: 'clamp(3.2rem, 6vw, 6rem)', lineHeight: 0.85,
         color: 'var(--accent)', letterSpacing: '-0.05em',
         transition: 'transform 0.5s cubic-bezier(.2,.7,.2,1)',
-        transform: hovered ? 'translateX(8px)' : 'translateX(0)',
+        transform: hovered ? 'translateX(6px)' : 'translateX(0)',
       }}>
         {num}
       </div>
@@ -176,25 +166,25 @@ const EdRow = React.forwardRef<HTMLElement, {
       <div>
         <h3 style={{
           fontFamily: 'var(--f-display)', fontWeight: 500,
-          fontSize: 'clamp(1.6rem, 2.4vw, 2.1rem)',
-          letterSpacing: '-0.02em', lineHeight: 1.1,
-          marginBottom: 14, maxWidth: '18ch',
+          fontSize: 'clamp(1.1rem, 1.7vw, 1.6rem)',
+          letterSpacing: '-0.02em', lineHeight: 1.15,
+          marginBottom: 10, maxWidth: '20ch',
         }}>
           {title}
         </h3>
-        <p style={{ fontSize: 15, color: 'var(--ink-mute)', lineHeight: 1.6, maxWidth: '56ch' }}>
+        <p style={{ fontSize: 'clamp(13px, 1vw, 14px)', color: 'var(--ink-mute)', lineHeight: 1.6, maxWidth: '52ch' }}>
           {body}
         </p>
       </div>
 
       <div className="ed-glyph-wrap" style={{
-        height: 120, display: 'flex', alignItems: 'center', justifyContent: 'flex-end',
+        height: 90, display: 'flex', alignItems: 'center', justifyContent: 'flex-end',
       }}>
         <svg style={{
-          width: '100%', maxWidth: 360, height: 'auto', color: 'var(--ink)',
-          opacity: hovered ? 1 : 0.55,
+          width: '100%', maxWidth: 260, height: 'auto', color: 'var(--ink)',
+          opacity: hovered ? 1 : 0.5,
           transition: 'opacity 0.4s ease, transform 0.5s cubic-bezier(.2,.7,.2,1), color 0.4s ease',
-          transform: hovered ? 'translateX(-6px)' : 'translateX(0)',
+          transform: hovered ? 'translateX(-4px)' : 'translateX(0)',
           ...(hovered ? { color: 'var(--accent)' } : {}),
         }} viewBox={glyph.props.viewBox as string} fill="none" stroke="currentColor" strokeWidth="1.4" strokeLinecap="round" strokeLinejoin="round">
           {glyph.props.children}

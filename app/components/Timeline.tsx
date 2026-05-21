@@ -82,24 +82,21 @@ export default function Timeline() {
   return (
     <section id="qanday" style={{
       background: 'var(--bg)', borderTop: '1px solid var(--border)',
-      paddingBlock: 'clamp(96px, 12vw, 160px)',
+      paddingBlock: 'var(--section-py)',
     }}>
       <div className="container">
-        <div style={{
-          display: 'grid', gridTemplateColumns: '1fr 2fr',
-          gap: 48, alignItems: 'end', marginBottom: 80,
-        }} className="section-head-tl">
-          <div style={{ display: 'flex', flexDirection: 'column', gap: 14 }}>
+        <div className="section-head section-head-tl">
+          <div style={{ display: 'flex', flexDirection: 'column', gap: 10 }}>
             <span className="mono-label"><span className="dot" />Qanday ishlaydi</span>
-            <span style={{ fontFamily: 'var(--f-mono)', fontSize: 11, letterSpacing: '0.16em', color: 'var(--ink-soft)', textTransform: 'uppercase' }}>§ 03 — Jarayon</span>
+            <span style={{ fontFamily: 'var(--f-mono)', fontSize: 10, letterSpacing: '0.16em', color: 'var(--ink-soft)', textTransform: 'uppercase' }}>§ 03 — Jarayon</span>
           </div>
-          <h2 style={{ fontSize: 'clamp(2.4rem, 4.8vw, 4rem)', fontWeight: 600, letterSpacing: '-0.03em', lineHeight: 1 }}>
+          <h2 style={{ fontSize: 'clamp(1.8rem, 3.6vw, 3.2rem)', fontWeight: 600, letterSpacing: '-0.03em', lineHeight: 1.05 }}>
             Uch bosqich,{' '}
             <span style={{ color: 'var(--accent)', fontStyle: 'italic', fontWeight: 500 }}>bir daqiqada.</span>
           </h2>
         </div>
 
-        <div ref={tlRef} style={{ position: 'relative', display: 'grid', gridTemplateColumns: 'repeat(3, 1fr)', gap: 24 }} className="tl-grid">
+        <div ref={tlRef} style={{ position: 'relative', display: 'grid', gridTemplateColumns: 'repeat(3, 1fr)', gap: 'clamp(16px, 2.5vw, 28px)' }} className="tl-grid">
           {/* Progress track */}
           <div style={{
             position: 'absolute', top: 44, left: 56, right: 56,
@@ -120,19 +117,16 @@ export default function Timeline() {
       </div>
 
       <style>{`
-        @media (max-width: 900px) {
-          .section-head-tl { grid-template-columns: 1fr !important; gap: 18px !important; margin-bottom: 48px !important; }
-          .tl-grid { grid-template-columns: 1fr 1fr !important; gap: 36px 20px !important; }
+        @media (max-width: 860px) {
+          .section-head-tl { grid-template-columns: 1fr !important; gap: 12px !important; }
+          .tl-grid { grid-template-columns: 1fr 1fr !important; gap: 28px 16px !important; }
           .tl-track { display: none !important; }
         }
-        @media (max-width: 640px) {
-          .tl-grid { gap: 28px 14px !important; }
-          .tl-step-last { grid-column: 1 / -1 !important; max-width: 240px !important; }
-          .tl-icon { width: 60px !important; height: 60px !important; }
-          .tl-icon svg { width: 26px !important; height: 26px !important; }
-          .tl-step h3 { font-size: clamp(1rem, 4vw, 1.15rem) !important; }
-          .tl-step p { font-size: 12px !important; line-height: 1.5 !important; }
-          .tl-step-num { font-size: 10px !important; }
+        @media (max-width: 560px) {
+          .tl-grid { gap: 20px 12px !important; }
+          .tl-step-last { grid-column: 1 / -1 !important; max-width: 220px !important; }
+          .tl-icon { width: 52px !important; height: 52px !important; margin-bottom: 14px !important; }
+          .tl-icon svg { width: 22px !important; height: 22px !important; }
         }
       `}</style>
     </section>
@@ -154,20 +148,20 @@ const StepItem = React.forwardRef<HTMLDivElement, typeof steps[0] & { isLast?: b
         style={{ position: 'relative', paddingRight: 24 }}
       >
         <div className="tl-icon" style={{
-          width: 88, height: 88, borderRadius: 999,
+          width: 72, height: 72, borderRadius: 999,
           background: hovered ? 'var(--ink)' : 'var(--bg)',
           border: '2px solid var(--ink)',
           color: hovered ? 'var(--accent)' : 'var(--ink)',
           display: 'grid', placeItems: 'center',
-          marginBottom: 28, position: 'relative', zIndex: 1,
+          marginBottom: 20, position: 'relative', zIndex: 1,
           transition: 'all 0.4s ease',
           transform: hovered ? 'translateY(-3px)' : 'translateY(0)',
         }}>
           {icon}
         </div>
-        <div className="tl-step-num" style={{ fontFamily: 'var(--f-mono)', fontSize: 11, letterSpacing: '0.18em', color: 'var(--accent)', textTransform: 'uppercase', marginBottom: 8 }}>{num}</div>
-        <h3 style={{ fontFamily: 'var(--f-display)', fontWeight: 600, fontSize: 'clamp(1.5rem, 2.2vw, 1.9rem)', letterSpacing: '-0.02em', marginBottom: 10, lineHeight: 1.1 }}>{title}</h3>
-        <p style={{ color: 'var(--ink-mute)', fontSize: 15, lineHeight: 1.55, maxWidth: '30ch' }}>{body}</p>
+        <div className="tl-step-num" style={{ fontFamily: 'var(--f-mono)', fontSize: 10, letterSpacing: '0.18em', color: 'var(--accent)', textTransform: 'uppercase', marginBottom: 7 }}>{num}</div>
+        <h3 style={{ fontFamily: 'var(--f-display)', fontWeight: 600, fontSize: 'clamp(1rem, 1.6vw, 1.5rem)', letterSpacing: '-0.02em', marginBottom: 8, lineHeight: 1.15 }}>{title}</h3>
+        <p style={{ color: 'var(--ink-mute)', fontSize: 'clamp(12px, 1vw, 14px)', lineHeight: 1.6, maxWidth: '30ch' }}>{body}</p>
       </div>
     );
   }

@@ -4,7 +4,7 @@ export default function Cta() {
   return (
     <section id="download" style={{
       position: 'relative', overflow: 'hidden',
-      paddingBlock: 'clamp(120px, 16vw, 200px)',
+      paddingBlock: 'clamp(72px, 11vw, 140px)',
       background: '#0E1620', color: '#fff',
     }}>
       {/* eslint-disable-next-line @next/next/no-img-element */}
@@ -40,7 +40,7 @@ export default function Cta() {
 
         <h2 style={{
           marginTop: 18, color: '#fff',
-          fontSize: 'clamp(2.8rem, 6.4vw, 5.2rem)',
+          fontSize: 'clamp(1.9rem, 4.2vw, 3.8rem)',
           fontWeight: 600, letterSpacing: '-0.035em', lineHeight: 1,
         }}>
           Mashinangiz tarixini<br />

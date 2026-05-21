@@ -1,7 +1,7 @@
 @import "tailwindcss";
 
 /* ============================================================
-   TOKENS — Cream premium · warm coral accent
+   TOKENS
    ============================================================ */
 :root {
   --bg:          #F2ECE2;
@@ -21,11 +21,12 @@
   --f-body:    'Switzer', 'Plus Jakarta Sans', system-ui, sans-serif;
   --f-mono:    var(--font-mono), 'IBM Plex Mono', ui-monospace, monospace;
 
-  --max: 1280px;
+  --max: 1200px;
+  --section-py: clamp(64px, 9vw, 120px);
 }
 
 /* ============================================================
-   DARK MODE TOKENS
+   DARK MODE
    ============================================================ */
 [data-theme="dark"] {
   --bg:          #0E1620;
@@ -41,7 +42,6 @@
   --border:      rgba(242, 236, 226, 0.10);
   --border-2:    rgba(242, 236, 226, 0.18);
 }
-
 @media (prefers-color-scheme: dark) {
   :root:not([data-theme]) {
     --bg:          #0E1620;
@@ -59,42 +59,30 @@
   }
 }
 
-/* ============================================================
-   DARK MODE OVERRIDES — hardcoded rgba colors in components
-   ============================================================ */
-[data-theme="dark"] .hero-bg-grid {
+[data-theme="dark"] .hero-bg-grid,
+:root:not([data-theme]) .hero-bg-grid {
   background-image:
     linear-gradient(to right, rgba(255,255,255,0.05) 1px, transparent 1px),
     linear-gradient(to bottom, rgba(255,255,255,0.05) 1px, transparent 1px) !important;
 }
-@media (prefers-color-scheme: dark) {
-  :root:not([data-theme]) .hero-bg-grid {
-    background-image:
-      linear-gradient(to right, rgba(255,255,255,0.05) 1px, transparent 1px),
-      linear-gradient(to bottom, rgba(255,255,255,0.05) 1px, transparent 1px) !important;
-  }
-}
 
+/* ============================================================
+   RESET / BASE
+   ============================================================ */
 *, *::before, *::after { box-sizing: border-box; }
 html { scroll-behavior: smooth; overflow-x: hidden; }
-
 body {
   background: var(--bg);
   color: var(--ink);
   font-family: var(--f-body);
-  font-weight: 400;
-  font-size: 16px;
+  font-size: 15px;
   line-height: 1.55;
   -webkit-font-smoothing: antialiased;
-  -moz-osx-font-smoothing: grayscale;
   overflow-x: hidden;
-  margin: 0;
-  padding: 0;
+  margin: 0; padding: 0;
 }
-
 ::selection { background: var(--accent); color: #fff; }
-
-h1, h2, h3, h4 {
+h1,h2,h3,h4 {
   font-family: var(--f-display);
   font-weight: 600;
   line-height: 1.02;
@@ -106,59 +94,70 @@ p { margin: 0; }
 a { color: inherit; text-decoration: none; }
 img { display: block; max-width: 100%; }
 
+/* ============================================================
+   LAYOUT
+   ============================================================ */
 .container {
   width: 100%;
   max-width: var(--max);
   margin-inline: auto;
-  padding-inline: 40px;
+  padding-inline: clamp(16px, 4vw, 48px);
 }
-@media (max-width: 768px) { .container { padding-inline: 22px; } }
 
+/* Section header 2-col → 1-col */
+.section-head {
+  display: grid;
+  grid-template-columns: 1fr 2fr;
+  gap: 40px;
+  align-items: end;
+  margin-bottom: clamp(40px, 6vw, 72px);
+}
+@media (max-width: 860px) {
+  .section-head { grid-template-columns: 1fr !important; gap: 14px !important; }
+}
+
+/* ============================================================
+   COMPONENTS
+   ============================================================ */
 .mono-label {
   font-family: var(--f-mono);
-  font-weight: 500;
-  font-size: 11px;
+  font-size: 10px;
   letter-spacing: 0.16em;
   text-transform: uppercase;
   color: var(--ink-mute);
   display: flex;
   align-items: center;
-  gap: 0;
 }
 .mono-label .dot {
   display: inline-block;
-  width: 6px;
-  height: 6px;
+  width: 6px; height: 6px;
   border-radius: 50%;
   background: var(--accent);
   margin-right: 10px;
   flex-shrink: 0;
 }
 
-/* ── SCROLL REVEAL ── */
+/* ── Reveal animation ── */
 .reveal {
   opacity: 0;
-  transform: translateY(28px);
-  transition: opacity 0.9s cubic-bezier(0.2, 0.7, 0.2, 1),
-              transform 0.9s cubic-bezier(0.2, 0.7, 0.2, 1);
+  transform: translateY(24px);
+  transition: opacity 0.8s cubic-bezier(0.2, 0.7, 0.2, 1),
+              transform 0.8s cubic-bezier(0.2, 0.7, 0.2, 1);
 }
-.reveal.in {
-  opacity: 1;
-  transform: translateY(0);
-}
+.reveal.in { opacity: 1; transform: translateY(0); }
 
-/* ── MARQUEE ── */
+/* ── Marquee ── */
 @keyframes marquee {
   from { transform: translateX(0); }
   to   { transform: translateX(-50%); }
 }
 @keyframes pulse-dot {
-  0%   { box-shadow: 0 0 0 0 rgba(255, 82, 48, 0.5); }
-  70%  { box-shadow: 0 0 0 10px rgba(255, 82, 48, 0); }
-  100% { box-shadow: 0 0 0 0 rgba(255, 82, 48, 0); }
+  0%   { box-shadow: 0 0 0 0 rgba(255,82,48,0.5); }
+  70%  { box-shadow: 0 0 0 8px rgba(255,82,48,0); }
+  100% { box-shadow: 0 0 0 0 rgba(255,82,48,0); }
 }
 
-/* ── SVG DRAW ANIMATION ── */
+/* ── SVG draw ── */
 .draw {
   stroke-dasharray: 1200;
   stroke-dashoffset: 1200;
@@ -169,50 +168,22 @@ img { display: block; max-width: 100%; }
 .vin-stage-active .draw.d2 { transition-delay: 120ms; }
 .vin-stage-active .draw.d3 { transition-delay: 240ms; }
 .vin-stage-active .draw.d4 { transition-delay: 360ms; }
-.pin-text {
-  opacity: 0;
-  transition: opacity 0.5s ease;
-}
+.pin-text { opacity: 0; transition: opacity 0.5s ease; }
 .vin-stage-active .pin-text { opacity: 1; }
 .vin-stage-active .pin-text.t1 { transition-delay: 700ms; }
 .vin-stage-active .pin-text.t2 { transition-delay: 850ms; }
 .vin-stage-active .pin-text.t3 { transition-delay: 1000ms; }
 
-/* ── TIMELINE PROGRESS ── */
+/* ── Timeline ── */
 .timeline-fill {
   transform-origin: left;
   transform: scaleX(0);
   transition: transform 1.8s cubic-bezier(0.5, 0, 0.2, 1);
 }
-.timeline-active .timeline-fill {
-  transform: scaleX(1);
-}
+.timeline-active .timeline-fill { transform: scaleX(1); }
 
+/* ── Reduced motion ── */
 @media (prefers-reduced-motion: reduce) {
-  *, *::before, *::after {
-    animation-duration: 0.01ms !important;
-    transition-duration: 0.01ms !important;
-  }
+  *, *::before, *::after { animation-duration: 0.01ms !important; transition-duration: 0.01ms !important; }
   .reveal { opacity: 1; transform: none; }
-}
-
-/* ── MOBILE UTILITIES ── */
-@media (max-width: 640px) {
-  .hero-car-wrap {
-    right: 0 !important;
-    width: 100% !important;
-  }
-  .hero-vin-badge {
-    top: 12px !important;
-    right: 12px !important;
-  }
-  .hero-meta-card {
-    grid-template-columns: 1fr 1px 1fr !important;
-    gap: 12px !important;
-    padding: 14px 16px !important;
-    border-radius: 12px !important;
-  }
-  .hero-meta-card .meta-hide {
-    display: none !important;
-  }
 }

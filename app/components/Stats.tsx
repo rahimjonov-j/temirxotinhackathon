@@ -53,17 +53,17 @@ function StatItem({ count, suffix, text, label, sub, delay }: { count: number | 
   }, [delay]);
 
   return (
-    <div ref={ref} className="reveal stat-item" style={{ padding: '24px 32px', borderRight: '1px solid var(--border)' }}>
+    <div ref={ref} className="reveal stat-item" style={{ padding: 'clamp(16px, 2.5vw, 28px) clamp(16px, 3vw, 32px)', borderRight: '1px solid var(--border)' }}>
       <div className="stats-num" style={{
         fontFamily: 'var(--f-display)', fontWeight: 600,
-        fontSize: 'clamp(2.8rem, 5vw, 4.8rem)',
+        fontSize: 'clamp(2.2rem, 4vw, 3.8rem)',
         color: 'var(--ink)', letterSpacing: '-0.045em', lineHeight: 1,
       }}>
         {text ?? value.toLocaleString('en-US').replace(/,/g, ' ')}
         <span style={{ color: 'var(--accent)' }}>{text ? '' : suffix}</span>
       </div>
-      <div className="stats-label" style={{ marginTop: 14, fontFamily: 'var(--f-mono)', fontSize: 11, letterSpacing: '0.14em', textTransform: 'uppercase', color: 'var(--ink-mute)' }}>{label}</div>
-      <div className="stats-sub" style={{ marginTop: 8, color: 'var(--ink-mute)', fontSize: 14, maxWidth: '30ch' }}>{sub}</div>
+      <div className="stats-label" style={{ marginTop: 10, fontFamily: 'var(--f-mono)', fontSize: 10, letterSpacing: '0.14em', textTransform: 'uppercase', color: 'var(--ink-mute)' }}>{label}</div>
+      <div className="stats-sub" style={{ marginTop: 6, color: 'var(--ink-mute)', fontSize: 13, maxWidth: '30ch' }}>{sub}</div>
     </div>
   );
 }
@@ -74,18 +74,15 @@ export default function Stats() {
       background: 'var(--bg-2)',
       borderTop: '1px solid var(--border)',
       borderBottom: '1px solid var(--border)',
-      paddingBlock: 'clamp(80px, 10vw, 120px)',
+      paddingBlock: 'var(--section-py)',
     }}>
       <div className="container">
-        <div style={{
-          display: 'grid', gridTemplateColumns: '1fr 2fr',
-          gap: 48, alignItems: 'end', marginBottom: 56,
-        }} className="section-head-stats">
-          <div style={{ display: 'flex', flexDirection: 'column', gap: 14 }}>
+        <div className="section-head section-head-stats">
+          <div style={{ display: 'flex', flexDirection: 'column', gap: 10 }}>
             <span className="mono-label"><span className="dot" />Raqamlar</span>
-            <span style={{ fontFamily: 'var(--f-mono)', fontSize: 11, letterSpacing: '0.16em', color: 'var(--ink-soft)', textTransform: 'uppercase' }}>§ 04 — Trafik</span>
+            <span style={{ fontFamily: 'var(--f-mono)', fontSize: 10, letterSpacing: '0.16em', color: 'var(--ink-soft)', textTransform: 'uppercase' }}>§ 04 — Trafik</span>
           </div>
-          <h2 style={{ fontSize: 'clamp(2.4rem, 4.8vw, 4rem)', fontWeight: 600, letterSpacing: '-0.03em', lineHeight: 1 }}>
+          <h2 style={{ fontSize: 'clamp(1.8rem, 3.6vw, 3.2rem)', fontWeight: 600, letterSpacing: '-0.03em', lineHeight: 1.05 }}>
             O&apos;zbekiston bo&apos;ylab,{' '}
             <span style={{ color: 'var(--accent)', fontStyle: 'italic', fontWeight: 500 }}>faol.</span>
           </h2>
@@ -101,8 +98,8 @@ export default function Stats() {
       <style>{`
         .stats-grid > .stat-item:last-child { border-right: none !important; }
 
-        @media (max-width: 900px) {
-          .section-head-stats { grid-template-columns: 1fr !important; gap: 18px !important; margin-bottom: 36px !important; }
+        @media (max-width: 860px) {
+          .section-head-stats { grid-template-columns: 1fr !important; gap: 12px !important; }
         }
 
         @media (max-width: 760px) {

@@ -73,7 +73,7 @@ export default function VinBlueprint() {
     <section id="blueprint" style={{
       background: '#0E1620', color: '#F2ECE2',
       overflow: 'hidden', position: 'relative',
-      paddingBlock: 'clamp(96px, 12vw, 160px)',
+      paddingBlock: 'var(--section-py)',
     }}>
       {/* Grid backdrop */}
       <div style={{
@@ -87,11 +87,8 @@ export default function VinBlueprint() {
 
       <div className="container">
         {/* Section head */}
-        <div style={{
-          display: 'grid', gridTemplateColumns: '1fr 2fr',
-          gap: 48, alignItems: 'end', marginBottom: 80,
-        }} className="section-head-vin">
-          <div style={{ display: 'flex', flexDirection: 'column', gap: 14 }}>
+        <div className="section-head section-head-vin">
+          <div style={{ display: 'flex', flexDirection: 'column', gap: 10 }}>
             <span style={{
               fontFamily: 'var(--f-mono)', fontWeight: 500, fontSize: 11,
               letterSpacing: '0.16em', textTransform: 'uppercase',
@@ -103,7 +100,7 @@ export default function VinBlueprint() {
             </span>
             <span style={{ fontFamily: 'var(--f-mono)', fontSize: 11, letterSpacing: '0.16em', color: 'rgba(255,255,255,0.4)', textTransform: 'uppercase' }}>§ 02 — Blueprint</span>
           </div>
-          <h2 style={{ fontSize: 'clamp(2.4rem, 4.8vw, 4rem)', fontWeight: 600, letterSpacing: '-0.03em', lineHeight: 1, color: '#fff' }}>
+          <h2 style={{ fontSize: 'clamp(1.8rem, 3.6vw, 3.2rem)', fontWeight: 600, letterSpacing: '-0.03em', lineHeight: 1.05, color: '#fff' }}>
             Har bir mashina —{' '}
             <span style={{ color: 'var(--accent)', fontStyle: 'italic', fontWeight: 500 }}>yagona tarix.</span>
           </h2>
@@ -274,7 +271,7 @@ export default function VinBlueprint() {
 
         {/* VIN Footer grid */}
         <div style={{
-          marginTop: 56, display: 'grid', gridTemplateColumns: 'repeat(4, 1fr)',
+          marginTop: 'clamp(32px, 5vw, 56px)', display: 'grid', gridTemplateColumns: 'repeat(4, 1fr)',
           gap: 1, background: 'rgba(255,255,255,0.08)',
           border: '1px solid rgba(255,255,255,0.08)', borderRadius: 14, overflow: 'hidden',
         }} className="vin-footer-grid">
@@ -284,17 +281,17 @@ export default function VinBlueprint() {
             { k: 'Oxirgi tashrif', v: '12.04.2026', coral: false },
             { k: 'Egasi', v: '2-egasi · Toshkent', coral: false },
           ].map((cell) => (
-            <div key={cell.k} style={{ background: '#0E1620', padding: 22 }}>
-              <div style={{ fontFamily: 'var(--f-mono)', fontSize: 10, letterSpacing: '0.16em', textTransform: 'uppercase', color: 'rgba(255,255,255,0.45)', marginBottom: 8 }}>{cell.k}</div>
-              <div style={{ fontFamily: 'var(--f-display)', fontWeight: 500, fontSize: 20, letterSpacing: '-0.01em', color: cell.coral ? 'var(--accent)' : '#fff' }}>{cell.v}</div>
+            <div key={cell.k} style={{ background: '#0E1620', padding: 'clamp(14px, 2vw, 22px)' }}>
+              <div style={{ fontFamily: 'var(--f-mono)', fontSize: 10, letterSpacing: '0.16em', textTransform: 'uppercase', color: 'rgba(255,255,255,0.45)', marginBottom: 6 }}>{cell.k}</div>
+              <div style={{ fontFamily: 'var(--f-display)', fontWeight: 500, fontSize: 'clamp(14px, 1.5vw, 20px)', letterSpacing: '-0.01em', color: cell.coral ? 'var(--accent)' : '#fff' }}>{cell.v}</div>
             </div>
           ))}
         </div>
       </div>
 
       <style>{`
-        @media (max-width: 900px) {
-          .section-head-vin { grid-template-columns: 1fr !important; gap: 18px !important; margin-bottom: 40px !important; }
+        @media (max-width: 860px) {
+          .section-head-vin { grid-template-columns: 1fr !important; gap: 12px !important; }
         }
         @media (max-width: 760px) {
           .vin-footer-grid { grid-template-columns: repeat(2, 1fr) !important; }
