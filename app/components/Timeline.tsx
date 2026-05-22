@@ -37,7 +37,7 @@ const steps = [
     ),
     num: 'Bosqich 03',
     title: "Mutaxassis keladi, to'lov avtomatik",
-    body: "Usta yetib kelib ishni bajaradi. To'lov hamyondan avtomatik — hech qanday naqd pul kerak emas.",
+    body: "Usta yetib kelib ishni bajaradi. Platforma ulushi ustaning hamyonidan avtomatik yechiladi — siz hech narsa to'lamaysiz.",
   },
 ];
 

@@ -163,7 +163,7 @@ function ServiceCard({ service, delay }: { service: typeof services[0]; delay: n
 
       {/* Arrow */}
       <div style={{
-        marginTop: 'auto',
+        marginTop: 16,
         display: 'flex', alignItems: 'center', gap: 6,
         fontFamily: 'var(--f-mono)', fontSize: 9, letterSpacing: '0.14em',
         textTransform: 'uppercase',
@@ -225,6 +225,11 @@ export default function ServicesSection() {
           display: grid;
           grid-template-columns: repeat(3, 1fr);
           gap: clamp(12px, 1.5vw, 20px);
+          align-items: start;
+        }
+        .svc-card {
+          height: auto !important;
+          min-height: unset !important;
         }
         @media (max-width: 860px) {
           .section-head-svc { grid-template-columns: 1fr !important; gap: 12px !important; }

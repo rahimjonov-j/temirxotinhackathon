@@ -8,6 +8,7 @@ const NAV_LINKS = [
   { label: 'Xizmatlar', href: '#xizmatlar' },
   { label: "To'lov", href: '#tolov' },
   { label: 'Jarayon', href: '#qanday' },
+  { label: 'Narxlar', href: '#narxlar' },
 ];
 
 export default function Nav() {

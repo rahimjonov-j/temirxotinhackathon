@@ -88,8 +88,8 @@ export default function SosSection() {
             <span style={{ fontFamily: 'var(--f-mono)', fontSize: 10, letterSpacing: '0.16em', color: 'rgba(255,255,255,0.35)', textTransform: 'uppercase' }}>§ 01 — SOS tizimi</span>
           </div>
           <h2 style={{ fontSize: 'clamp(1.8rem,3.6vw,3.2rem)', fontWeight: 600, letterSpacing: '-0.03em', lineHeight: 1.05, color: '#fff' }}>
-            Yo&apos;lda qolsangiz —{' '}
-            <span style={{ color: 'var(--accent)', fontStyle: 'italic', fontWeight: 500 }}>operator yonida.</span>
+            Yo&apos;lda qoldingizmi —{' '}
+            <span style={{ color: 'var(--accent)', fontStyle: 'italic', fontWeight: 500 }}>operator yoningizda.</span>
           </h2>
         </div>
 

@@ -3,7 +3,7 @@
 import { useEffect, useRef, useState } from 'react';
 
 const stats = [
-  { count: 380,  suffix: '', prefix: '+', label: "Ishonchli mutaxasislar", sub: "Mexanik · elektrik · evakuator · kuzov ustasi", full: true },
+  { count: 380,  suffix: '', prefix: '+', label: "Ishonchli mutaxasislar", sub: "Mexanik · elektrik · evakuator · kuzov ustasi", full: false },
   { count: 13,   suffix: '+', prefix: '', label: "Viloyat bo'ylab",        sub: "Toshkent, Samarqand, Buxoro, Farg'ona va boshqalar", full: false },
   { count: null, text: '24/7', prefix: '', label: 'Har doim ochiq',        sub: "SOS tugmasi — kecha va kunduz ishlaydi", full: false },
 ];
@@ -93,7 +93,7 @@ export default function Stats() {
           </h2>
         </div>
 
-        <div style={{ display: 'grid', gridTemplateColumns: '1fr 1fr', gap: 0 }} className="stats-grid">
+        <div style={{ display: 'grid', gridTemplateColumns: 'repeat(3, 1fr)', gap: 0 }} className="stats-grid">
           {stats.map((s, i) => (
             <StatItem key={s.label} {...s} delay={i * 140} />
           ))}
@@ -101,13 +101,16 @@ export default function Stats() {
       </div>
 
       <style>{`
-        /* 380+ spans full width, 13+ and 24/7 side by side */
-        .stat-full { grid-column: 1 / -1; border-bottom: 1px solid var(--border); border-right: none !important; }
         .stats-grid > .stat-item:last-child { border-right: none !important; }
-        .stats-grid > .stat-item:not(.stat-full):first-of-type { border-right: 1px solid var(--border); }
 
         @media (max-width: 860px) {
           .section-head-stats { grid-template-columns: 1fr !important; gap: 12px !important; }
+        }
+        @media (max-width: 640px) {
+          .stats-grid { grid-template-columns: 1fr 1fr !important; }
+          .stat-item { border-bottom: 1px solid var(--border) !important; }
+          .stat-item:nth-child(even) { border-right: none !important; }
+          .stat-item:last-child { grid-column: 1 / -1 !important; border-bottom: none !important; }
         }
         @media (max-width: 480px) {
           .stat-item { padding: 14px 12px !important; }
