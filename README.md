@@ -1,36 +1,65 @@
-This is a [Next.js](https://nextjs.org) project bootstrapped with [`create-next-app`](https://nextjs.org/docs/app/api-reference/cli/create-next-app).
+# Moshn — Bir tugma, yo'lda yordam
 
-## Getting Started
+O'zbekistonda yo'lda qolib ketgan haydovchilarga tezkor yordam ko'rsatuvchi mobil ilova va landing sahifasi.
 
-First, run the development server:
+---
 
-```bash
-npm run dev
-# or
-yarn dev
-# or
-pnpm dev
-# or
-bun dev
-```
+## Loyiha haqida
 
-Open [http://localhost:3000](http://localhost:3000) with your browser to see the result.
+**Moshn** — avtomobil yo'lda ishdan chiqib qolganda bir tugma orqali mutaxassis chaqirish imkonini beruvchi platforma. Foydalanuvchi SOS tugmasini bosgandan so'ng 60 soniya ichida operator aloqaga chiqadi, muammoni aniqlab kerakli mutaxassisni yo'naltiradi. O'rtacha 18 daqiqada yetib keladi.
 
-You can start editing the page by modifying `app/page.tsx`. The page auto-updates as you edit the file.
+### Asosiy xizmatlar
 
-This project uses [`next/font`](https://nextjs.org/docs/app/building-your-application/optimizing/fonts) to automatically optimize and load [Geist](https://vercel.com/font), a new font family for Vercel.
+- **SOS yordam** — 24/7 operator, kecha-kunduz
+- **Evakuator** — mashina o'z kuchida yura olmasa
+- **Mashina start bermayapti** — akkumulyator yoki startyor muammosi
+- **Qulfni ochish** — kalit yo'q yoki qulflanib qolgan
+- **Batareya almashtirish** — yangi akkumulyator bilan mutaxassis keladi
+- **AI tahlil** — mashina belgilariga qarab qaysi mutaxassis kerakligi aniqlanadi
 
-## Learn More
+### Raqamlar
 
-To learn more about Next.js, take a look at the following resources:
+| Ko'rsatkich | Qiymat |
+|---|---|
+| Ishonchli mutaxassislar | 380+ |
+| Qamrab olingan viloyatlar | 13+ |
+| Ishlash rejimi | 24/7 |
 
-- [Next.js Documentation](https://nextjs.org/docs) - learn about Next.js features and API.
-- [Learn Next.js](https://nextjs.org/learn) - an interactive Next.js tutorial.
+---
 
-You can check out [the Next.js GitHub repository](https://github.com/vercel/next.js) - your feedback and contributions are welcome!
+## Tech stack
 
-## Deploy on Vercel
+- **Framework:** Next.js 16 (App Router)
+- **Til:** TypeScript
+- **Stil:** CSS-in-JS (inline styles) + global CSS
+- **Shriftlar:** Clash Display, Switzer (Fontshare), IBM Plex Mono (Google Fonts)
+- **Rasm optimizatsiya:** sharp (WebP konversiya)
 
-The easiest way to deploy your Next.js app is to use the [Vercel Platform](https://vercel.com/new?utm_medium=default-template&filter=next.js&utm_source=create-next-app&utm_campaign=create-next-app-readme) from the creators of Next.js.
+---
 
-Check out our [Next.js deployment documentation](https://nextjs.org/docs/app/building-your-application/deploying) for more details.
+## Sahifalar
+
+| Yo'l | Tavsif |
+|---|---|
+| `/` | Asosiy landing sahifa |
+| `/Founders` | Chopildi Team — jamoa a'zolari |
+
+---
+
+## Jamoa
+
+**Chopildi Team** 🪓
+
+| Ism | Lavozim |
+|---|---|
+| Mirzo Ulug'bek Xudoyberdiyev | Founder · Technician |
+| Javohirbek Rahimjonov | UI/UX Designer |
+| MuhammadNurulloh Ergashev | Developer |
+| Dostonbek Solijonov | Sales Manager |
+| Azamjon Nazirov | Data Analyst |
+
+---
+
+## Litsenziya
+
+Barcha huquqlar himoyalangan © 2026 Moshn · Chopildi Team
