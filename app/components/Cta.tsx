@@ -185,11 +185,37 @@ export default function Cta() {
         }}>
           SOS tugmasini bosing — operator darhol aloqaga chiqadi, muammoni aniqlab, kerakli mutaxassisni yuboradi. Evakuator, mexanik, elektrik — hammasi bir ilovada.
         </p>
+
+        <a
+          href="https://media.moshn.uz"
+          target="_blank"
+          rel="noopener noreferrer"
+          className="cta-download-btn"
+        >
+          <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2.4" strokeLinecap="round" strokeLinejoin="round">
+            <path d="M12 5v10M7 14l5 5 5-5"/>
+            <line x1="3" y1="21" x2="21" y2="21"/>
+          </svg>
+          Ilovani yuklab olish
+        </a>
       </div>
 
       <style>{`
+        .cta-download-btn {
+          display: inline-flex; align-items: center; gap: 10px;
+          margin-top: 40px;
+          background: var(--accent); color: #fff;
+          padding: 15px 32px; border-radius: 14px;
+          font-family: var(--f-body); font-weight: 600;
+          font-size: clamp(14px, 1.4vw, 16px);
+          letter-spacing: -0.01em; text-decoration: none;
+          transition: opacity 0.2s ease, transform 0.2s ease;
+        }
+        .cta-download-btn:hover { opacity: 0.88; transform: translateY(-2px); }
+        .cta-download-btn:active { opacity: 0.75; transform: translateY(0); }
         @media (max-width: 640px) {
           .cta-text { padding-inline: 16px !important; }
+          .cta-download-btn { display: none !important; }
         }
         @keyframes cta-pulse-anim {
           0%   { transform: scale(1);   opacity: 0.8; }

@@ -119,7 +119,7 @@ export default function Nav() {
 
       {/* Mobile fixed bottom CTA */}
       <div className="mob-cta">
-        <a href={`${prefix}#download`} className="mob-cta-btn">
+        <a href="https://media.moshn.uz" target="_blank" rel="noopener noreferrer" className="mob-cta-btn">
           Ilovani yuklab olish
           <svg width="15" height="15" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2.4" strokeLinecap="round">
             <path d="M12 5v10M7 14l5 5 5-5"/>
