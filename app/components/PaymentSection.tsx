@@ -114,33 +114,17 @@ export default function PaymentSection() {
                 </g>
               ))}
 
-              {/* Auto-deduct arrow */}
-              <line x1="210" y1="278" x2="210" y2="308" stroke="rgba(255,82,48,0.4)" strokeWidth="1.5" strokeDasharray="4 4"/>
-              <polyline points="202 300 210 310 218 300" stroke="rgba(255,82,48,0.6)" strokeWidth="1.5" fill="none"/>
 
-              {/* Transaction rows */}
-              {[
-                { label: 'Mexanik · Buyurtma #1042', amount: '−15 000', color: '#FF5230' },
-                { label: 'Evakuator · Buyurtma #1041', amount: '−30 000', color: '#FF5230' },
-                { label: "Hamyon to'ldirildi", amount: '+300 000', color: '#4CAF82' },
-              ].map((tx, i) => (
-                <g key={i} transform={`translate(30, ${328 + i * 0})`}>
-                  {i === 0 && (
-                    <>
-                      <rect x="0" y="0" width="360" height="1" fill="rgba(255,255,255,0.06)"/>
-                      <rect x="0" y="1" width="360" height="48" fill="rgba(255,255,255,0.02)"/>
-                      <text x="12" y="30" fontFamily="var(--f-mono,monospace)" fontSize="11" fill="rgba(255,255,255,0.5)">{tx.label}</text>
-                      <text x="348" y="30" fontFamily="var(--f-display,sans-serif)" fontSize="13" fontWeight="600" fill={tx.color} textAnchor="end">{tx.amount}</text>
-                    </>
-                  )}
-                </g>
-              ))}
+              {/* Transaction row */}
+              <rect x="30" y="274" width="360" height="1" fill="rgba(255,255,255,0.08)"/>
+              <rect x="30" y="275" width="360" height="50" fill="rgba(255,255,255,0.02)"/>
+              <text x="46" y="306" fontFamily="IBM Plex Mono,monospace" fontSize="11" fill="rgba(255,255,255,0.45)">Mexanik · Buyurtma #1042</text>
+              <text x="374" y="306" fontFamily="IBM Plex Mono,monospace" fontSize="11" fontWeight="600" fill="#FF5230" textAnchor="end">{'−15 000 so\'m'}</text>
 
-              {/* Single transaction line at bottom */}
-              <rect x="30" y="328" width="360" height="1" fill="rgba(255,255,255,0.06)"/>
-              <rect x="30" y="329" width="360" height="50" fill="rgba(255,255,255,0.02)" rx="0"/>
-              <text x="42" y="360" fontFamily="IBM Plex Mono,monospace" fontSize="11" fill="rgba(255,255,255,0.45)">Mexanik · Buyurtma #1042</text>
-              <text x="370" y="360" fontFamily="IBM Plex Mono,monospace" fontSize="12" fontWeight="600" fill="#FF5230" textAnchor="end">−15 000 so&apos;m</text>
+              <rect x="30" y="325" width="360" height="1" fill="rgba(255,255,255,0.06)"/>
+              <rect x="30" y="326" width="360" height="50" fill="rgba(255,255,255,0.01)"/>
+              <text x="46" y="357" fontFamily="IBM Plex Mono,monospace" fontSize="11" fill="rgba(255,255,255,0.3)">Hamyon to&apos;ldirildi</text>
+              <text x="374" y="357" fontFamily="IBM Plex Mono,monospace" fontSize="11" fontWeight="600" fill="#4CAF82" textAnchor="end">+300 000</text>
 
               {/* Corner marks */}
               <line x1="10" y1="20" x2="28" y2="20" stroke="rgba(255,255,255,0.2)" strokeWidth="1"/>

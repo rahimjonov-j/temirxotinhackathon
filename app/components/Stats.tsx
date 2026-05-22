@@ -3,9 +3,9 @@
 import { useEffect, useRef, useState } from 'react';
 
 const stats = [
-  { count: 380,  suffix: '+', label: "Ishonchli mutaxasislar", sub: "Mexanik · elektrik · evakuator · kuzov ustasi" },
-  { count: 14,   suffix: '',  label: 'Viloyat bo\'ylab',       sub: "Toshkent, Samarqand, Buxoro, Farg'ona va boshqalar" },
-  { count: null, text: '24/7', label: 'Har doim ochiq',        sub: "SOS tugmasi — kecha va kunduz ishlaydi" },
+  { count: 380,  suffix: '', prefix: '+', label: "Ishonchli mutaxasislar", sub: "Mexanik · elektrik · evakuator · kuzov ustasi", full: true },
+  { count: 13,   suffix: '+', prefix: '', label: "Viloyat bo'ylab",        sub: "Toshkent, Samarqand, Buxoro, Farg'ona va boshqalar", full: false },
+  { count: null, text: '24/7', prefix: '', label: 'Har doim ochiq',        sub: "SOS tugmasi — kecha va kunduz ishlaydi", full: false },
 ];
 
 function useCountUp(target: number | null, active: boolean) {
@@ -27,7 +27,7 @@ function useCountUp(target: number | null, active: boolean) {
   return value;
 }
 
-function StatItem({ count, suffix, text, label, sub, delay }: { count: number | null; suffix?: string; text?: string; label: string; sub: string; delay: number }) {
+function StatItem({ count, suffix, prefix, text, label, sub, delay, full }: { count: number | null; suffix?: string; prefix?: string; text?: string; label: string; sub: string; delay: number; full?: boolean }) {
   const ref = useRef<HTMLDivElement>(null);
   const [active, setActive] = useState(false);
   const value = useCountUp(count, active);
@@ -53,14 +53,19 @@ function StatItem({ count, suffix, text, label, sub, delay }: { count: number | 
   }, [delay]);
 
   return (
-    <div ref={ref} className="reveal stat-item" style={{ padding: 'clamp(16px, 2.5vw, 28px) clamp(16px, 3vw, 32px)', borderRight: '1px solid var(--border)' }}>
+    <div ref={ref} className={`reveal stat-item${full ? ' stat-full' : ''}`} style={{ padding: 'clamp(16px, 2.5vw, 28px) clamp(16px, 3vw, 32px)', borderRight: '1px solid var(--border)' }}>
       <div className="stats-num" style={{
         fontFamily: 'var(--f-display)', fontWeight: 600,
         fontSize: 'clamp(2.2rem, 4vw, 3.8rem)',
         color: 'var(--ink)', letterSpacing: '-0.045em', lineHeight: 1,
       }}>
-        {text ?? value.toLocaleString('en-US').replace(/,/g, ' ')}
-        <span style={{ color: 'var(--accent)' }}>{text ? '' : suffix}</span>
+        {text ? text : (
+          <>
+            <span style={{ color: 'var(--accent)' }}>{prefix}</span>
+            {value.toLocaleString('en-US').replace(/,/g, ' ')}
+            <span style={{ color: 'var(--accent)' }}>{suffix}</span>
+          </>
+        )}
       </div>
       <div className="stats-label" style={{ marginTop: 10, fontFamily: 'var(--f-mono)', fontSize: 10, letterSpacing: '0.14em', textTransform: 'uppercase', color: 'var(--ink-mute)' }}>{label}</div>
       <div className="stats-sub" style={{ marginTop: 6, color: 'var(--ink-mute)', fontSize: 13, maxWidth: '30ch' }}>{sub}</div>
@@ -88,7 +93,7 @@ export default function Stats() {
           </h2>
         </div>
 
-        <div style={{ display: 'grid', gridTemplateColumns: 'repeat(3, 1fr)', gap: 0 }} className="stats-grid">
+        <div style={{ display: 'grid', gridTemplateColumns: '1fr 1fr', gap: 0 }} className="stats-grid">
           {stats.map((s, i) => (
             <StatItem key={s.label} {...s} delay={i * 140} />
           ))}
@@ -96,22 +101,14 @@ export default function Stats() {
       </div>
 
       <style>{`
+        /* 380+ spans full width, 13+ and 24/7 side by side */
+        .stat-full { grid-column: 1 / -1; border-bottom: 1px solid var(--border); border-right: none !important; }
         .stats-grid > .stat-item:last-child { border-right: none !important; }
+        .stats-grid > .stat-item:not(.stat-full):first-of-type { border-right: 1px solid var(--border); }
 
         @media (max-width: 860px) {
           .section-head-stats { grid-template-columns: 1fr !important; gap: 12px !important; }
         }
-
-        @media (max-width: 760px) {
-          .stats-grid { grid-template-columns: 1fr 1fr !important; }
-          .stat-item { border-right: 1px solid var(--border) !important; border-bottom: 1px solid var(--border) !important; padding: 18px 16px !important; }
-          .stat-item:nth-child(even) { border-right: none !important; }
-          .stat-item:last-child { grid-column: 1 / -1 !important; border-bottom: none !important; border-right: none !important; border-top: 1px solid var(--border) !important; }
-          .stats-num { font-size: clamp(2rem, 8vw, 3rem) !important; }
-          .stats-label { font-size: 10px !important; margin-top: 8px !important; }
-          .stats-sub { font-size: 12px !important; margin-top: 4px !important; }
-        }
-
         @media (max-width: 480px) {
           .stat-item { padding: 14px 12px !important; }
           .stats-num { font-size: clamp(1.6rem, 7vw, 2.2rem) !important; }

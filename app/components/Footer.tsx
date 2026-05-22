@@ -14,7 +14,6 @@ export default function Footer() {
         <a href="#top" style={{ display: 'flex', alignItems: 'center', gap: 12, textDecoration: 'none' }}>
           {/* eslint-disable-next-line @next/next/no-img-element */}
           <img src="/logo-transparent.webp" alt="Moshn logo" className="footer-logo-img" style={{ display: 'block', flexShrink: 0, height: 38, width: 38, objectFit: 'contain' }} />
-          <span style={{ fontFamily: 'var(--f-display)', fontWeight: 500, fontSize: 17, color: 'var(--ink)', letterSpacing: '-0.01em' }}>Moshn</span>
         </a>
 
 
@@ -22,7 +21,7 @@ export default function Footer() {
           fontFamily: 'var(--f-mono)', fontSize: 11,
           letterSpacing: '0.12em', color: 'var(--ink-mute)', textTransform: 'uppercase',
         }}>
-          © 2026 Moshn · Toshkent
+          2026 Moshn · Powered by Chopildi Team
         </div>
       </div>
       <style>{`

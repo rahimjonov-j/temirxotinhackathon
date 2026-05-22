@@ -132,22 +132,34 @@ export default function SosSection() {
             ))}
 
             {/* Chips */}
-            <div style={{ display: 'flex', gap: 10, marginTop: 'clamp(24px,3vw,36px)', flexWrap: 'wrap' }}>
-              {[['60 sek', "operator javob vaqti"], ['18 min', "o'rtacha kelish"], ['24/7', 'doim ochiq']].map(([val, label]) => (
+            <div style={{ display: 'grid', gridTemplateColumns: '1fr 1fr', gap: 10, marginTop: 'clamp(24px,3vw,36px)' }}>
+              {/* 60 sek — full width top */}
+              <div style={{
+                gridColumn: '1 / -1',
+                background: 'rgba(255,255,255,0.05)',
+                border: '1px solid rgba(255,255,255,0.09)',
+                borderRadius: 12, padding: 'clamp(14px,2vw,20px) clamp(16px,2.5vw,24px)',
+                display: 'flex', alignItems: 'center', justifyContent: 'space-between', gap: 12,
+              }}>
+                <div>
+                  <div style={{ fontFamily: 'var(--f-display)', fontWeight: 600, fontSize: 'clamp(1.6rem,3vw,2.4rem)', color: 'var(--accent)', letterSpacing: '-0.04em', lineHeight: 1 }}>60 sek</div>
+                  <div style={{ fontFamily: 'var(--f-mono)', fontSize: 9, letterSpacing: '0.14em', textTransform: 'uppercase', color: 'rgba(255,255,255,0.35)', marginTop: 6 }}>Operator javob vaqti</div>
+                </div>
+                <div style={{ width: 36, height: 36, borderRadius: '50%', background: 'rgba(255,82,48,0.15)', border: '1px solid rgba(255,82,48,0.3)', display: 'grid', placeItems: 'center', flexShrink: 0 }}>
+                  <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="#FF5230" strokeWidth="2" strokeLinecap="round">
+                    <path d="M22 16.92v3a2 2 0 0 1-2.18 2 19.79 19.79 0 0 1-8.63-3.07A19.5 19.5 0 0 1 4.69 12 19.79 19.79 0 0 1 1.61 3.38 2 2 0 0 1 3.6 1.22h3a2 2 0 0 1 2 1.72 12.84 12.84 0 0 0 .7 2.81 2 2 0 0 1-.45 2.11L7.91 8.96a16 16 0 0 0 6.13 6.13l.86-.86a2 2 0 0 1 2.11-.45 12.84 12.84 0 0 0 2.81.7A2 2 0 0 1 22 16.92z"/>
+                  </svg>
+                </div>
+              </div>
+              {/* 18 min + 24/7 — yonma-yon */}
+              {[['18 min', "o'rtacha kelish"], ['24/7', 'doim ochiq']].map(([val, label]) => (
                 <div key={val} style={{
                   background: 'rgba(255,255,255,0.05)',
                   border: '1px solid rgba(255,255,255,0.09)',
-                  borderRadius: 10, padding: 'clamp(10px,1.5vw,14px) clamp(14px,2vw,20px)',
+                  borderRadius: 12, padding: 'clamp(12px,1.8vw,18px) clamp(14px,2vw,20px)',
                 }}>
-                  <div style={{
-                    fontFamily: 'var(--f-display)', fontWeight: 600,
-                    fontSize: 'clamp(1rem,1.8vw,1.4rem)', color: 'var(--accent)',
-                    letterSpacing: '-0.03em',
-                  }}>{val}</div>
-                  <div style={{
-                    fontFamily: 'var(--f-mono)', fontSize: 9, letterSpacing: '0.14em',
-                    textTransform: 'uppercase', color: 'rgba(255,255,255,0.35)', marginTop: 4,
-                  }}>{label}</div>
+                  <div style={{ fontFamily: 'var(--f-display)', fontWeight: 600, fontSize: 'clamp(1.2rem,2.2vw,1.8rem)', color: 'var(--accent)', letterSpacing: '-0.04em', lineHeight: 1 }}>{val}</div>
+                  <div style={{ fontFamily: 'var(--f-mono)', fontSize: 9, letterSpacing: '0.14em', textTransform: 'uppercase', color: 'rgba(255,255,255,0.35)', marginTop: 6 }}>{label}</div>
                 </div>
               ))}
             </div>

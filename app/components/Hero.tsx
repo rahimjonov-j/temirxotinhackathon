@@ -3,8 +3,11 @@
 import { useEffect, useRef, useState, useCallback } from 'react';
 
 const CARS = [
-  { src: '/cobalt.webp', alt: 'Chevrolet Cobalt' },
-  { src: '/damas.webp',  alt: 'Daewoo Damas' },
+  { src: '/cobalt.webp',  alt: 'Chevrolet Cobalt' },
+  { src: '/damas.webp',   alt: 'Daewoo Damas' },
+  { src: '/nexia2.png',   alt: 'Daewoo Nexia 2' },
+  { src: '/matiz.png',    alt: 'Daewoo Matiz' },
+  { src: '/jentra.png',   alt: 'Daewoo Gentra' },
 ];
 const SLIDES = [...CARS, CARS[0]];
 
@@ -48,7 +51,7 @@ export default function Hero() {
         const r = hero.getBoundingClientRect();
         if (r.bottom > 0 && r.top < window.innerHeight) {
           const p = -r.top;
-          if (carWrapRef.current)  carWrapRef.current.style.transform  = `translateY(${Math.max(-20, Math.min(60, p * 0.1))}px)`;
+          if (carWrapRef.current)  carWrapRef.current.style.transform  = `translateY(${Math.max(-24, Math.min(0, p * 0.1))}px)`;
           if (heroTextRef.current) heroTextRef.current.style.transform = `translateY(${-Math.max(0, p) * 0.04}px)`;
         }
         ticking = false;
@@ -96,7 +99,8 @@ export default function Hero() {
 
         {/* RIGHT */}
         <div className="hero-visual">
-          <div ref={carWrapRef} className="hero-car-slider">
+          <div className="hero-car-slider">
+            <div ref={carWrapRef} style={{ position: 'relative', width: '100%', height: '100%' }}>
             {/* Track */}
             <div
               ref={trackRef}
@@ -120,22 +124,11 @@ export default function Hero() {
               ))}
             </div>
 
-            {/* SOS badge */}
-            <span className="hero-vin-badge">
-              <span className="hero-vin-dot" />SOS · Faol
-            </span>
 
             {/* Progress */}
             <div className="hero-progress-track">
               <div key={dot} className="hero-progress-fill" />
             </div>
-
-            {/* Dots */}
-            <div className="hero-dots">
-              {CARS.map((_, i) => (
-                <button key={i} onClick={() => goTo(i)} aria-label={`Mashina ${i + 1}`}
-                  className={`hero-dot-btn${i === dot ? ' active' : ''}`} />
-              ))}
             </div>
           </div>
 
