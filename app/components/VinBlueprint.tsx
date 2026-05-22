@@ -5,22 +5,22 @@ import { useEffect, useRef, useState } from 'react';
 const hotspots = [
   {
     id: 'front-wheel',
-    label: "OLDINGI G'ILDIRAK · 18\"",
-    sub: 'Tormoz: yangi · 12.04.26',
+    label: "TORMOZ TIZIMI · Muammo",
+    sub: 'Avtostopchi mutaxassis kerak',
     cx: 280, cy: 438, r: 72,
     tipX: 280, tipY: 348,
   },
   {
     id: 'vin',
-    label: 'VIN · WBA8E9C5GK',
-    sub: '17 belgili · 2018 y.',
+    label: 'DVIGATEL · Ishlamayapti',
+    sub: 'Mexanik yo\'lga chiqdi',
     cx: 590, cy: 300, r: 95,
     tipX: 535, tipY: 228,
   },
   {
     id: 'oil',
-    label: "DVIGATEL YOG'I · 5W-30",
-    sub: 'Almashtirilgan: 84,200 km',
+    label: "TRANSMISSIYA · Muammo",
+    sub: 'Diagnostika kerak',
     cx: 360, cy: 400, r: 68,
     tipX: 360, tipY: 310,
   },
@@ -101,8 +101,8 @@ export default function VinBlueprint() {
             <span style={{ fontFamily: 'var(--f-mono)', fontSize: 11, letterSpacing: '0.16em', color: 'rgba(255,255,255,0.4)', textTransform: 'uppercase' }}>§ 02 — Blueprint</span>
           </div>
           <h2 style={{ fontSize: 'clamp(1.8rem, 3.6vw, 3.2rem)', fontWeight: 600, letterSpacing: '-0.03em', lineHeight: 1.05, color: '#fff' }}>
-            Har bir mashina —{' '}
-            <span style={{ color: 'var(--accent)', fontStyle: 'italic', fontWeight: 500 }}>yagona tarix.</span>
+            Har bir belgi —{' '}
+            <span style={{ color: 'var(--accent)', fontStyle: 'italic', fontWeight: 500 }}>aniq tashxis.</span>
           </h2>
         </div>
 
@@ -115,7 +115,7 @@ export default function VinBlueprint() {
           <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round">
             <circle cx="12" cy="12" r="10"/><line x1="12" y1="8" x2="12" y2="12"/><line x1="12" y1="16" x2="12.01" y2="16"/>
           </svg>
-          Mashina qismlariga bosing — ma'lumot chiqadi
+          Mashina qismlariga bosing — qaysi mutaxassis kerakligini ko&apos;ring
         </p>
 
         {/* SVG Stage */}
@@ -276,10 +276,10 @@ export default function VinBlueprint() {
           border: '1px solid rgba(255,255,255,0.08)', borderRadius: 14, overflow: 'hidden',
         }} className="vin-footer-grid">
           {[
-            { k: 'Hujjat ID', v: 'TX·A7301', coral: true },
-            { k: 'Servis yozuvi', v: '47 ta', coral: false },
-            { k: 'Oxirgi tashrif', v: '12.04.2026', coral: false },
-            { k: 'Egasi', v: '2-egasi · Toshkent', coral: false },
+            { k: 'Operator ID', v: 'TX·A7301', coral: true },
+            { k: 'Muammo turi', v: 'Dvigatel', coral: false },
+            { k: 'Kelish vaqti', v: '18 daqiqa', coral: false },
+            { k: 'Mutaxassis', v: 'Mexanik · Toshkent', coral: false },
           ].map((cell) => (
             <div key={cell.k} style={{ background: '#0E1620', padding: 'clamp(14px, 2vw, 22px)' }}>
               <div style={{ fontFamily: 'var(--f-mono)', fontSize: 10, letterSpacing: '0.16em', textTransform: 'uppercase', color: 'rgba(255,255,255,0.45)', marginBottom: 6 }}>{cell.k}</div>

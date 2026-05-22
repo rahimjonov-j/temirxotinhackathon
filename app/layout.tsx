@@ -80,14 +80,12 @@ export const metadata: Metadata = {
 
   icons: {
     icon: [
-      { url: "/icon-32.png",  sizes: "32x32",   type: "image/png" },
-      { url: "/icon-64.png",  sizes: "64x64",   type: "image/png" },
-      { url: "/icon-192.png", sizes: "192x192", type: "image/png" },
+      { url: "/logo-white.png", sizes: "any", type: "image/png" },
     ],
     apple: [
-      { url: "/icon-180.png", sizes: "180x180", type: "image/png" },
+      { url: "/logo-white.png", sizes: "180x180", type: "image/png" },
     ],
-    shortcut: "/icon-192.png",
+    shortcut: "/logo-white.png",
   },
 
   category: "technology",
@@ -144,10 +142,11 @@ export default function RootLayout({
   children: React.ReactNode;
 }>) {
   return (
-    <html lang="uz" className={`${ibmPlexMono.variable}`}>
+    <html lang="uz" className={`${ibmPlexMono.variable}`} suppressHydrationWarning>
       <head>
         {/* eslint-disable-next-line @next/next/no-before-interactive-script-outside-document */}
         <script dangerouslySetInnerHTML={{ __html: themeScript }} />
+        <link rel="icon" href="/logo-white.png" sizes="any" type="image/png" />
         <link rel="preconnect" href="https://api.fontshare.com" crossOrigin="anonymous" />
         <link rel="preconnect" href="https://images.unsplash.com" crossOrigin="anonymous" />
         <link

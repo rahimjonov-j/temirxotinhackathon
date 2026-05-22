@@ -6,40 +6,38 @@ const steps = [
   {
     icon: (
       <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="1.6" strokeLinecap="round" strokeLinejoin="round" width="34" height="34">
-        <path d="M3 9h2l1.5-2h11L19 9h2v10H3z"/>
-        <circle cx="12" cy="14" r="3.5"/>
-        <circle cx="12" cy="14" r="1.2" fill="currentColor"/>
+        <rect x="5" y="2" width="14" height="20" rx="3"/>
+        <line x1="12" y1="7" x2="12" y2="13" strokeWidth="2.4"/>
+        <circle cx="12" cy="16" r="1.2" fill="currentColor"/>
       </svg>
     ),
     num: 'Bosqich 01',
-    title: "Texpasportni telefonga ko'rsating",
-    body: "Kameraga tutasiz — mashina ma'lumotlari avtomatik aniqlanadi va hisobingizga qo'shiladi.",
+    title: "SOS tugmasini bosing",
+    body: "Ilovani oching, SOS tugmasiga bosing — operator 60 soniya ichida siz bilan bog'lanadi.",
   },
   {
     icon: (
       <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="1.6" strokeLinecap="round" strokeLinejoin="round" width="34" height="34">
-        <path d="M5 5h11l3 3v11H5z"/>
-        <polyline points="9 13 11 15 16 10"/>
-        <line x1="5" y1="10" x2="14" y2="10" strokeOpacity="0.4"/>
+        <circle cx="12" cy="8" r="4"/>
+        <path d="M4 20c0-4 3.6-7 8-7s8 3 8 7"/>
+        <polyline points="15 11 17 13 21 9" strokeWidth="1.8"/>
       </svg>
     ),
     num: 'Bosqich 02',
-    title: 'Usta yozadi, siz ko\'rib tasdiqlaysiz',
-    body: "Usta nima qilganini yozadi. Siz ko'rib tasdiqlaysiz — bu yozuv hech qachon o'chib ketmaydi.",
+    title: "Operator muammoni aniqlab, yo'naltiradi",
+    body: "Mashina belgilarini tahlil qilib, kerakli mutaxassisni — mexanik, elektrik yoki evakuator — topadi.",
   },
   {
     icon: (
       <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="1.6" strokeLinecap="round" strokeLinejoin="round" width="34" height="34">
-        <path d="M4 12c0-4.4 3.6-8 8-8s8 3.6 8 8-3.6 8-8 8-8-3.6-8-8z"/>
-        <path d="M8 12c0-2.2 1.8-4 4-4s4 1.8 4 4-1.8 4-4 4-4-1.8-4-4z" strokeOpacity="0.5"/>
-        <circle cx="12" cy="12" r="1.2" fill="currentColor"/>
-        <line x1="12" y1="2" x2="12" y2="5" strokeOpacity="0.4"/>
-        <line x1="12" y1="19" x2="12" y2="22" strokeOpacity="0.4"/>
+        <rect x="2" y="7" width="20" height="13" rx="2"/>
+        <path d="M16 7V5a2 2 0 0 0-2-2h-4a2 2 0 0 0-2 2v2"/>
+        <polyline points="8 14 11 17 16 12" strokeWidth="2"/>
       </svg>
     ),
     num: 'Bosqich 03',
-    title: 'Tarix hech qachon yo\'qolmaydi',
-    body: "Mashinani sotsangiz ham tarix yangi egaga o'tadi. Xaridor hamma narsani o'z ko'zi bilan ko'radi.",
+    title: "Mutaxassis keladi, to'lov avtomatik",
+    body: "Usta yetib kelib ishni bajaradi. To'lov hamyondan avtomatik — hech qanday naqd pul kerak emas.",
   },
 ];
 
@@ -91,8 +89,8 @@ export default function Timeline() {
             <span style={{ fontFamily: 'var(--f-mono)', fontSize: 10, letterSpacing: '0.16em', color: 'var(--ink-soft)', textTransform: 'uppercase' }}>§ 03 — Jarayon</span>
           </div>
           <h2 style={{ fontSize: 'clamp(1.8rem, 3.6vw, 3.2rem)', fontWeight: 600, letterSpacing: '-0.03em', lineHeight: 1.05 }}>
-            Uch bosqich,{' '}
-            <span style={{ color: 'var(--accent)', fontStyle: 'italic', fontWeight: 500 }}>bir daqiqada.</span>
+            SOS dan ustaga —{' '}
+            <span style={{ color: 'var(--accent)', fontStyle: 'italic', fontWeight: 500 }}>uch qadam.</span>
           </h2>
         </div>
 

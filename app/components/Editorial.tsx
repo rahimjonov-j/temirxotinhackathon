@@ -5,51 +5,48 @@ import { useEffect, useRef } from 'react';
 const features = [
   {
     num: '01',
-    title: "Mashinangizning to'liq tarixi bir joyda",
-    body: "Har bir ta'mir, har bir moy almashtirish — hammasini ko'rishingiz mumkin. Mashina necha marta sotilsa ham, tarix yo'qolmaydi.",
+    title: "Yo'lda qolsangiz — bir tugma yetarli",
+    body: "SOS tugmasini bosing — operator 60 soniya ichida aloqaga chiqadi. Mashina belgilarini tahlil qilib, eng mos mutaxassisni — mexanik, elektrik yoki evakuatorni — yo'lga soladi.",
     glyph: (
-      <svg viewBox="0 0 360 120" fill="none" stroke="currentColor" strokeWidth="1.4" strokeLinecap="round">
-        <line x1="20" y1="60" x2="340" y2="60"/>
-        <line x1="20" y1="60" x2="20" y2="50"/><line x1="60" y1="60" x2="60" y2="48"/>
-        <line x1="100" y1="60" x2="100" y2="50"/><line x1="140" y1="60" x2="140" y2="48"/>
-        <line x1="180" y1="60" x2="180" y2="44"/><line x1="220" y1="60" x2="220" y2="48"/>
-        <line x1="260" y1="60" x2="260" y2="50"/><line x1="300" y1="60" x2="300" y2="48"/>
-        <line x1="340" y1="60" x2="340" y2="50"/>
-        <text x="20" y="84" fontFamily="IBM Plex Mono,monospace" fontSize="11" fill="currentColor" stroke="none" letterSpacing="2">VIN · 17</text>
+      <svg viewBox="0 0 360 120" fill="none" stroke="currentColor" strokeWidth="1.4" strokeLinecap="round" strokeLinejoin="round">
+        <rect x="140" y="20" width="80" height="80" rx="16"/>
+        <circle cx="180" cy="95" r="8" strokeWidth="1.2"/>
+        <line x1="180" y1="44" x2="180" y2="72" strokeWidth="3"/>
+        <circle cx="180" cy="82" r="3" fill="currentColor" stroke="none"/>
+        <line x1="60" y1="60" x2="110" y2="60" strokeOpacity="0.4"/>
+        <line x1="250" y1="60" x2="300" y2="60" strokeOpacity="0.4"/>
+        <polyline points="95 48 110 60 95 72" strokeOpacity="0.4"/>
+        <text x="20" y="84" fontFamily="IBM Plex Mono,monospace" fontSize="11" fill="currentColor" stroke="none" letterSpacing="2">SOS</text>
       </svg>
     ),
   },
   {
     num: '02',
-    title: "Ishonchli ustani osongina toping",
-    body: "Har bir usta haqiqiy mijozlar tomonidan baholangan. Yaqin atrofingizdan, o'z viloyatingizdan — eng ishonchli ustani bir zumda tanlaysiz.",
+    title: "Uyda ham, yo'lda ham — biz yetib boramiz",
+    body: "Mashina ot olmayapti, qulflanib qolgan yoki uzoq yotgan — bular ham bizda. Evakuator, batareya almashtirish, ishga tushirish — hammasini bir joydan buyurtma bering.",
     glyph: (
       <svg viewBox="0 0 360 120" fill="none" stroke="currentColor" strokeWidth="1.4" strokeLinecap="round" strokeLinejoin="round">
-        <circle cx="180" cy="60" r="22"/>
-        <circle cx="100" cy="44" r="14"/><circle cx="260" cy="44" r="14"/>
-        <circle cx="80" cy="84" r="10"/><circle cx="280" cy="84" r="10"/>
-        <line x1="155" y1="56" x2="120" y2="48"/><line x1="205" y1="56" x2="240" y2="48"/>
-        <line x1="160" y1="76" x2="92" y2="84"/><line x1="200" y1="76" x2="268" y2="84"/>
-        <path d="M172 60 l5 5 l11 -12" strokeWidth="2"/>
+        <rect x="20" y="50" width="160" height="50" rx="6"/>
+        <path d="M180 75 L220 55 L320 55 L340 75 L340 100 L180 100 Z"/>
+        <circle cx="220" cy="100" r="14"/>
+        <circle cx="300" cy="100" r="14"/>
+        <circle cx="60" cy="100" r="14"/>
+        <line x1="20" y1="70" x2="180" y2="70" strokeOpacity="0.4"/>
+        <polyline points="130 40 180 75" strokeOpacity="0.35"/>
       </svg>
     ),
   },
   {
     num: '03',
-    title: "Mashinani sotsangiz, tarix yangi egaga o'tadi",
-    body: "Xaridor mashinaning butun o'tmishini ko'radi — yashirin nuqson yo'q. Sotuvchi ham, xaridor ham ishonch bilan ish qiladi.",
+    title: "To'lov avtomatik — hech qanday naqd pul kerak emas",
+    body: "Usta buyurtmani qabul qilgach, hamyonidan platforma ulushi avtomatik yechiladi. Qolgan xizmat narxini usta bilan kelishib olasiz — siz faqat raqamingizni tasdiqlab qo'yasiz.",
     glyph: (
       <svg viewBox="0 0 360 120" fill="none" stroke="currentColor" strokeWidth="1.4" strokeLinecap="round" strokeLinejoin="round">
-        <rect x="20" y="34" width="120" height="52" rx="6"/>
-        <rect x="220" y="34" width="120" height="52" rx="6"/>
-        <line x1="40" y1="50" x2="120" y2="50" strokeOpacity="0.5"/>
-        <line x1="40" y1="60" x2="100" y2="60" strokeOpacity="0.5"/>
-        <line x1="40" y1="70" x2="110" y2="70" strokeOpacity="0.5"/>
-        <line x1="240" y1="50" x2="320" y2="50" strokeOpacity="0.5"/>
-        <line x1="240" y1="60" x2="300" y2="60" strokeOpacity="0.5"/>
-        <line x1="240" y1="70" x2="310" y2="70" strokeOpacity="0.5"/>
-        <path d="M155 60 L205 60" strokeWidth="2"/>
-        <polyline points="195 50 205 60 195 70" strokeWidth="2"/>
+        <rect x="40" y="30" width="280" height="60" rx="10"/>
+        <line x1="40" y1="52" x2="320" y2="52"/>
+        <rect x="58" y="62" width="40" height="14" rx="3" strokeOpacity="0.5"/>
+        <rect x="110" y="62" width="24" height="14" rx="3" strokeOpacity="0.5"/>
+        <path d="M240 62 l10 10 l20 -20" strokeWidth="2" stroke="currentColor"/>
       </svg>
     ),
   },
@@ -84,8 +81,8 @@ export default function Editorial() {
             <span style={{ fontFamily: 'var(--f-mono)', fontSize: 10, letterSpacing: '0.16em', color: 'var(--ink-soft)', textTransform: 'uppercase' }}>§ 01 — Imkoniyatlar</span>
           </div>
           <h2 style={{ fontSize: 'clamp(1.8rem, 3.6vw, 3.2rem)', fontWeight: 600, letterSpacing: '-0.03em', lineHeight: 1.05 }}>
-            Uchta sabab —{' '}
-            <span style={{ color: 'var(--accent)', fontStyle: 'italic', fontWeight: 500 }}>yetarli.</span>
+            Uchta yo&apos;nalish —{' '}
+            <span style={{ color: 'var(--accent)', fontStyle: 'italic', fontWeight: 500 }}>bir ilova.</span>
           </h2>
         </div>
 

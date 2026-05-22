@@ -3,11 +3,8 @@
 import { useEffect, useRef, useState, useCallback } from 'react';
 
 const CARS = [
-  { src: '/cobalt.webp',      alt: 'Chevrolet Cobalt' },
-  { src: '/haval.webp',       alt: 'Haval' },
-  { src: '/damas.webp',       alt: 'Daewoo Damas' },
-  { src: '/bydchampion.webp', alt: 'BYD Champion' },
-  { src: '/kiasonet1.webp',   alt: 'Kia Sonet' },
+  { src: '/cobalt.webp', alt: 'Chevrolet Cobalt' },
+  { src: '/damas.webp',  alt: 'Daewoo Damas' },
 ];
 const SLIDES = [...CARS, CARS[0]];
 
@@ -74,13 +71,13 @@ export default function Hero() {
       <div className="hero-inner container">
         {/* LEFT */}
         <div ref={heroTextRef} className="hero-text">
-          <span className="mono-label"><span className="dot" />Mashinangiz uchun ishonchli xotira · 2026</span>
+          <span className="mono-label"><span className="dot" />Yo&apos;lda qolsangiz · 2026</span>
 
           <h1 className="hero-h1">
-            <span>Mashinaning</span>
-            <span>butun hayoti —</span>
+            <span>Mashina to&apos;xtadi?</span>
+            <span>Bir tugma —</span>
             <span className="hero-accent-line">
-              <em>bir joyda</em>
+              <em>yordam yo&apos;lda</em>
               <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2.2" strokeLinecap="round" strokeLinejoin="round">
                 <line x1="5" y1="12" x2="19" y2="12"/><polyline points="13 6 19 12 13 18"/>
               </svg>
@@ -88,12 +85,12 @@ export default function Hero() {
           </h1>
 
           <p className="hero-p">
-            Mashinangizga qilingan har bir ta&apos;mir, har bir almashtirish — telefoningizda saqlanadi. Sotsangiz ham, yangi egasi barchasini ko&apos;radi.
+            Yo&apos;lda mashinangiz ishdan chiqsa — ilovani oching, SOS tugmasini bosing. Operator aloqaga chiqadi, muammoni aniqlab, kerakli mutaxassisni yuboradi.
           </p>
 
           <div className="hero-badges">
             <span><span className="hero-dot-pulse" />14 viloyatda mavjud</span>
-            <span>380+ ishonchli usta</span>
+            <span>380+ ishonchli mutaxassis</span>
           </div>
         </div>
 
@@ -123,9 +120,9 @@ export default function Hero() {
               ))}
             </div>
 
-            {/* VIN badge */}
+            {/* SOS badge */}
             <span className="hero-vin-badge">
-              <span className="hero-vin-dot" />VIN aniqlandi
+              <span className="hero-vin-dot" />SOS · Faol
             </span>
 
             {/* Progress */}
@@ -145,17 +142,17 @@ export default function Hero() {
           {/* Meta card */}
           <div className="hero-meta">
             <div className="hero-meta-item">
-              <div className="hero-meta-label">VIN</div>
-              <div className="hero-meta-val">WBA·8E9C·5G·K</div>
+              <div className="hero-meta-label">SOS</div>
+              <div className="hero-meta-val">Faol · 24/7</div>
             </div>
             <div className="hero-meta-divider" />
             <div className="hero-meta-item">
-              <div className="hero-meta-label">Servis yozuvi</div>
-              <div className="hero-meta-val accent">47 ta</div>
+              <div className="hero-meta-label">Operatorlar</div>
+              <div className="hero-meta-val accent">12 nafar</div>
             </div>
             <div className="hero-meta-item hero-meta-km">
-              <div className="hero-meta-label">Yurgan</div>
-              <div className="hero-meta-val">87 420 km</div>
+              <div className="hero-meta-label">O&apos;rtacha kelish</div>
+              <div className="hero-meta-val">18 daqiqa</div>
             </div>
           </div>
         </div>
@@ -166,7 +163,7 @@ export default function Hero() {
         <div className="hero-marquee-inner">
           {[0, 1].map(i => (
             <div key={i} className="hero-marquee-row">
-              {['VIN — yagona identifikator','Tekshirilgan ustalar','Servis avtomatik yoziladi','Tarix sotuvda saqlanadi',"14 viloyat bo'ylab",'Texpasport bitta surat'].map(t => (
+              {['SOS — bir tugma yetarli','380+ ishonchli mutaxassis','Operator 60 soniyada','Evakuator ham mavjud',"14 viloyat bo'ylab",'To\'lov avtomatik yechiladi'].map(t => (
                 <span key={t} className="hero-marquee-item">
                   {t}<span className="hero-marquee-dot" />
                 </span>

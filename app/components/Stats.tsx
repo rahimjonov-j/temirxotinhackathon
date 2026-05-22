@@ -3,9 +3,9 @@
 import { useEffect, useRef, useState } from 'react';
 
 const stats = [
-  { count: 1248, suffix: '+', label: "Ulangan mashinalar", sub: "Toshkent, Samarqand, Buxoro, Farg'ona va boshqa shaharlarda" },
-  { count: 124,  suffix: '+', label: 'Ishonchli ustalar',  sub: "Ta'mir · elektr · kuzov ishlari" },
-  { count: null, text: '24/7', label: 'Har doim ochiq',   sub: "Ilovani oching — internet bo'lmasa ham ishlaydi" },
+  { count: 380,  suffix: '+', label: "Ishonchli mutaxasislar", sub: "Mexanik · elektrik · evakuator · kuzov ustasi" },
+  { count: 14,   suffix: '',  label: 'Viloyat bo\'ylab',       sub: "Toshkent, Samarqand, Buxoro, Farg'ona va boshqalar" },
+  { count: null, text: '24/7', label: 'Har doim ochiq',        sub: "SOS tugmasi — kecha va kunduz ishlaydi" },
 ];
 
 function useCountUp(target: number | null, active: boolean) {
@@ -84,7 +84,7 @@ export default function Stats() {
           </div>
           <h2 style={{ fontSize: 'clamp(1.8rem, 3.6vw, 3.2rem)', fontWeight: 600, letterSpacing: '-0.03em', lineHeight: 1.05 }}>
             O&apos;zbekiston bo&apos;ylab,{' '}
-            <span style={{ color: 'var(--accent)', fontStyle: 'italic', fontWeight: 500 }}>faol.</span>
+            <span style={{ color: 'var(--accent)', fontStyle: 'italic', fontWeight: 500 }}>tayyor.</span>
           </h2>
         </div>
 

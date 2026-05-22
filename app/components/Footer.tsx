@@ -13,7 +13,7 @@ export default function Footer() {
       }}>
         <a href="#top" style={{ display: 'flex', alignItems: 'center', gap: 12, textDecoration: 'none' }}>
           {/* eslint-disable-next-line @next/next/no-img-element */}
-          <img src="/logo-transparent.webp" alt="Moshn logo" style={{ display: 'block', flexShrink: 0, height: 38, width: 38, objectFit: 'contain' }} />
+          <img src="/logo-transparent.webp" alt="Moshn logo" className="footer-logo-img" style={{ display: 'block', flexShrink: 0, height: 38, width: 38, objectFit: 'contain' }} />
           <span style={{ fontFamily: 'var(--f-display)', fontWeight: 500, fontSize: 17, color: 'var(--ink)', letterSpacing: '-0.01em' }}>Moshn</span>
         </a>
 
@@ -28,6 +28,9 @@ export default function Footer() {
       <style>{`
         @media (max-width: 640px) {
           .footer-inner { flex-direction: column !important; align-items: flex-start !important; gap: 20px !important; }
+        }
+        [data-theme="dark"] .footer-logo-img {
+          filter: invert(1) brightness(10);
         }
       `}</style>
     </footer>

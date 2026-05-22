@@ -43,8 +43,8 @@ export default function Cta() {
           fontSize: 'clamp(1.9rem, 4.2vw, 3.8rem)',
           fontWeight: 600, letterSpacing: '-0.035em', lineHeight: 1,
         }}>
-          Mashinangiz tarixini<br />
-          <span style={{ color: 'var(--accent)', fontStyle: 'italic', fontWeight: 500 }}>bugun boshlang.</span>
+          Yo&apos;lda qolsangiz —<br />
+          <span style={{ color: 'var(--accent)', fontStyle: 'italic', fontWeight: 500 }}>bir tugma yetarli.</span>
         </h2>
 
         <p style={{
@@ -52,7 +52,7 @@ export default function Cta() {
           color: 'rgba(255,255,255,0.7)',
           fontSize: 'clamp(15px, 1.5vw, 17px)', fontWeight: 400, lineHeight: 1.6,
         }}>
-          Texpasportni kameraga ko'rsating — mashina ma'lumotlari avtomatik saqlanadi. Tamom. Boshqa hech narsa kerak emas.
+          SOS tugmasini bosing — operator darhol aloqaga chiqadi, muammoni aniqlab, kerakli mutaxassisni yuboradi. Evakuator, mexanik, elektrik — hammasi bir ilovada.
         </p>
 
       </div>
