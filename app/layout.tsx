@@ -1,5 +1,6 @@
 import type { Metadata } from "next";
 import { IBM_Plex_Mono } from "next/font/google";
+import Script from "next/script";
 import { ThemeProvider } from "./components/ThemeProvider";
 import "./globals.css";
 
@@ -15,27 +16,27 @@ export const metadata: Metadata = {
   metadataBase: new URL(SITE_URL),
 
   title: {
-    default: "Moshn — Mashinangiz tarixi, bir joyda",
+    default: "Moshn — Bir tugma, yo'lda yordam",
     template: "%s | Moshn",
   },
   description:
-    "Har bir ta'mir, har bir moy almashtirish — telefoningizda saqlanadi. Mashinani sotsangiz, butun tarix yangi egaga o'tadi. O'zbekiston bo'ylab 380+ ishonchli usta.",
+    "Yo'lda mashinangiz ishdan chiqsa — ilovani oching, SOS tugmasini bosing. Operator aloqaga chiqadi, muammoni aniqlab, kerakli mutaxassisni yuboradi. O'zbekiston bo'ylab 380+ ishonchli mutaxassis.",
 
   keywords: [
-    "mashina tarixi",
-    "avto servis Toshkent",
-    "avtomobil ta'miri",
-    "VIN raqam",
-    "texpasport skaner",
-    "mashina ta'mir yozuvi",
-    "servis kitobi",
+    "yo'lda yordam",
+    "avtoservis Toshkent",
+    "mashina buzilib qolsa",
+    "SOS yordam",
+    "yo'l yordami",
     "moshn",
-    "usta topish",
+    "mutaxassis chaqirish",
     "avtoservis O'zbekiston",
-    "car service history uzbekistan",
-    "mashina sotish tarix",
-    "Chevrolet Cobalt servis",
-    "avtomobil tarixi ilovasi",
+    "roadside assistance uzbekistan",
+    "mashina ta'miri",
+    "tezkor usta",
+    "yo'lda qolib ketdim",
+    "Chevrolet Cobalt ta'miri",
+    "avtomobil yordam ilovasi",
   ],
 
   authors: [{ name: "Moshn", url: SITE_URL }],
@@ -66,16 +67,16 @@ export const metadata: Metadata = {
     locale: "uz_UZ",
     url: SITE_URL,
     siteName: "Moshn",
-    title: "Moshn — Mashinangiz tarixi, bir joyda",
+    title: "Moshn — Bir tugma, yo'lda yordam",
     description:
-      "Har bir ta'mir, har bir almashtirish — telefoningizda saqlanadi. Mashinani sotsangiz, butun tarix yangi egaga o'tadi.",
+      "Yo'lda mashinangiz ishdan chiqsa — SOS tugmasini bosing. Operator aloqaga chiqadi, kerakli mutaxassisni yuboradi.",
   },
 
   twitter: {
     card: "summary_large_image",
-    title: "Moshn — Mashinangiz tarixi, bir joyda",
+    title: "Moshn — Bir tugma, yo'lda yordam",
     description:
-      "Har bir ta'mir, har bir almashtirish — telefoningizda saqlanadi. O'zbekiston bo'ylab 380+ ishonchli usta.",
+      "Yo'lda mashinangiz ishdan chiqsa — SOS tugmasini bosing. O'zbekiston bo'ylab 380+ ishonchli mutaxassis.",
   },
 
   icons: {
@@ -104,7 +105,7 @@ const jsonLd = {
         url: `${SITE_URL}/logo-transparent.webp`,
       },
       description:
-        "O'zbekistonda avtomobil servis tarixi va ishonchli ustalar platformasi.",
+        "O'zbekistonda yo'lda qolib ketgan haydovchilarga tezkor yordam ko'rsatuvchi platforma.",
       areaServed: { "@type": "Country", name: "Uzbekistan" },
     },
     {
@@ -114,7 +115,7 @@ const jsonLd = {
       operatingSystem: "ANDROID, IOS",
       applicationCategory: "UtilitiesApplication",
       description:
-        "Mashinangizga qilingan har bir ta'mir va xizmatni saqlang. Texpasportni skan qiling — mashina ma'lumotlari avtomatik qo'shiladi.",
+        "Yo'lda mashinangiz ishdan chiqsa — SOS tugmasini bosing. Operator aloqaga chiqadi, muammoni aniqlab, kerakli mutaxassisni yuboradi.",
       offers: { "@type": "Offer", price: "0", priceCurrency: "UZS" },
       aggregateRating: {
         "@type": "AggregateRating",
@@ -144,8 +145,6 @@ export default function RootLayout({
   return (
     <html lang="uz" className={`${ibmPlexMono.variable}`} suppressHydrationWarning>
       <head>
-        {/* eslint-disable-next-line @next/next/no-before-interactive-script-outside-document */}
-        <script dangerouslySetInnerHTML={{ __html: themeScript }} />
         <link rel="icon" href="/logo-white.png" sizes="any" type="image/png" />
         <link rel="preconnect" href="https://api.fontshare.com" crossOrigin="anonymous" />
         <link rel="preconnect" href="https://images.unsplash.com" crossOrigin="anonymous" />
@@ -153,7 +152,13 @@ export default function RootLayout({
           href="https://api.fontshare.com/v2/css?f[]=clash-display@500,600,700&f[]=switzer@300,400,500,600&display=swap"
           rel="stylesheet"
         />
-        <script
+        <Script
+          id="theme-init"
+          strategy="beforeInteractive"
+          dangerouslySetInnerHTML={{ __html: themeScript }}
+        />
+        <Script
+          id="json-ld"
           type="application/ld+json"
           dangerouslySetInnerHTML={{ __html: JSON.stringify(jsonLd) }}
         />

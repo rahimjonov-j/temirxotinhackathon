@@ -1,6 +1,7 @@
 'use client';
 
 import { useEffect, useRef, useState } from 'react';
+import { usePathname } from 'next/navigation';
 import { useTheme } from './ThemeProvider';
 
 const NAV_LINKS = [
@@ -16,6 +17,9 @@ export default function Nav() {
   const [menuOpen, setMenuOpen] = useState(false);
   const { theme, toggle } = useTheme();
   const navRef = useRef<HTMLElement>(null);
+  const pathname = usePathname();
+  const isHome = pathname === '/';
+  const prefix = isHome ? '' : '/';
 
   useEffect(() => {
     const onScroll = () => {
@@ -53,7 +57,7 @@ export default function Nav() {
       }}>
         <div className="container nav-inner">
           {/* Logo */}
-          <a href="#top" className="nav-logo-link">
+          <a href={`${prefix}#top`} className="nav-logo-link">
             {/* eslint-disable-next-line @next/next/no-img-element */}
             <img
               src={theme === 'dark' ? '/logo-white.webp' : '/logo-transparent.webp'}
@@ -65,14 +69,14 @@ export default function Nav() {
           {/* Desktop nav links */}
           <div className="nav-links">
             {NAV_LINKS.map(link => (
-              <a key={link.href} href={link.href} className="nav-link">{link.label}</a>
+              <a key={link.href} href={`${prefix}${link.href}`} className="nav-link">{link.label}</a>
             ))}
           </div>
 
           {/* Desktop right */}
           <div className="nav-right">
             <ThemeToggle theme={theme} toggle={toggle} />
-            <NavCta />
+            <NavCta prefix={prefix} />
           </div>
 
           {/* Mobile: burger */}
@@ -95,7 +99,7 @@ export default function Nav() {
             {NAV_LINKS.map(link => (
               <a
                 key={link.href}
-                href={link.href}
+                href={`${prefix}${link.href}`}
                 className="nav-drawer-link"
                 onClick={() => setMenuOpen(false)}
               >
@@ -115,7 +119,7 @@ export default function Nav() {
 
       {/* Mobile fixed bottom CTA */}
       <div className="mob-cta">
-        <a href="#download" className="mob-cta-btn">
+        <a href={`${prefix}#download`} className="mob-cta-btn">
           Ilovani yuklab olish
           <svg width="15" height="15" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2.4" strokeLinecap="round">
             <path d="M12 5v10M7 14l5 5 5-5"/>
@@ -237,11 +241,11 @@ function ThemeToggle({ theme, toggle }: { theme: 'light' | 'dark'; toggle: () =>
   );
 }
 
-function NavCta() {
+function NavCta({ prefix }: { prefix: string }) {
   const [hovered, setHovered] = useState(false);
   return (
     <a
-      href="#download"
+      href={`${prefix}#download`}
       onMouseEnter={() => setHovered(true)}
       onMouseLeave={() => setHovered(false)}
       style={{

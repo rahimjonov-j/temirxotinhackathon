@@ -134,27 +134,6 @@ function Card1() {
         ))}
       </ul>
 
-      {/* CTA */}
-      <a
-        href="#download"
-        className="pricing-card-cta"
-        style={{
-          marginTop: 'auto',
-          display: 'flex', alignItems: 'center', justifyContent: 'center', gap: 10,
-          background: 'var(--accent)', color: '#fff',
-          borderRadius: 10, padding: '11px 20px',
-          fontFamily: 'var(--f-body)', fontWeight: 600, fontSize: 14,
-          letterSpacing: '-0.01em', textDecoration: 'none',
-          transition: 'opacity 0.2s ease',
-        }}
-        onMouseEnter={e => (e.currentTarget.style.opacity = '0.88')}
-        onMouseLeave={e => (e.currentTarget.style.opacity = '1')}
-      >
-        Obuna bo&apos;lish
-        <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2.4" strokeLinecap="round">
-          <line x1="5" y1="12" x2="19" y2="12"/><polyline points="13 6 19 12 13 18"/>
-        </svg>
-      </a>
     </div>
   );
 }

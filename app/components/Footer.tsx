@@ -21,7 +21,10 @@ export default function Footer() {
           fontFamily: 'var(--f-mono)', fontSize: 11,
           letterSpacing: '0.12em', color: 'var(--ink-mute)', textTransform: 'uppercase',
         }}>
-          2026 Moshn · Powered by Chopildi Team
+          2026 Moshn · Powered by{' '}
+          <a href="/Founders" style={{ color: 'inherit', textDecoration: 'underline', textUnderlineOffset: 3 }}>
+            Chopildi Team
+          </a>
         </div>
       </div>
       <style>{`
